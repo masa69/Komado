@@ -5,6 +5,6 @@ source "https://rubygems.org"
 gem 'sinatra'
 
 # # Assets
-gem 'haml'
+# gem 'haml'
 gem 'sinatra-contrib'
 gem 'sass'
