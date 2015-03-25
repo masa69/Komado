@@ -1,4 +1,5 @@
 .bundle
 Gemfile.lock
 vendor
+public/js/bower_components/*
 !.gitkeep
