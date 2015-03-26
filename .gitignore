@@ -1,5 +1,7 @@
 .bundle
 Gemfile.lock
 vendor
+sass/.sass-cache
+sass/Font-Awesome
 public/js/bower_components/*
 !.gitkeep
