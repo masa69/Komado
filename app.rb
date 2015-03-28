@@ -70,6 +70,7 @@ get '/api/youtube/find' do
 		json search_response.data.items, :content_type => :js
 
 	rescue Google::APIClient::TransmissionError => e
+		status 500
 		e.result.body
 	end
 
