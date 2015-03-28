@@ -1,6 +1,11 @@
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider)
 {
 	$routeProvider
+		.when('/', {
+			templateUrl: '/templates/views/index.html',
+			controller: 'IndexController',
+			controllerAs: 'index',
+		})
 		.when('/:id', {
 			templateUrl: '/templates/views/index.html',
 			controller: 'IndexController',
