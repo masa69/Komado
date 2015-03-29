@@ -1,18 +1,25 @@
 require 'rubygems'
 require 'sinatra'
+require 'dalli'
 
 get '/' do
-	test = 'test'
-	erb :index, :locals => {
-		:test => test
-	}
+	erb :index
 end
 
 get '/:id' do
-	test = 'test'
-	id   = params[:id]
-	erb :test, :locals => {
-		:test => test,
-		:id   => id
-	}
+	erb :index
+end
+
+get '/player' do
+	erb :index
+end
+
+get '/player/:id' do
+	erb :index
+end
+
+get '/api/youtube/find' do
+	res = 'test'
+	kw  = params[:kw]
+	res = kw
 end
