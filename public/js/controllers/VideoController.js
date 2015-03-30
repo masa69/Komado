@@ -16,6 +16,13 @@ app.controller('VideoController', function($scope, Video)
 
 	$scope.$root.$on('video:find:success', function()
 	{
-		self.lists = Video.lists;
+		self.lists = Video.lists();
 	});
-});
+})
+	.directive('videoList', function()
+	{
+		return {
+			restrict: 'E',
+			templateUrl: '/templates/video/videoList.html',
+		};
+	});

@@ -11,12 +11,13 @@ app.factory('Video', function(Api)
 		Api.get('/api/youtube/find', params,
 			function(data, status)
 			{
-				console.log(data);
+				self.lists = data;
+				Api.emit('video:find:success');
 			},
 			function(data, status)
 			{
-				console.log(status);
-				console.log(data);
+				self.lists = null;
+				Api.emit('video:find:error');
 			});
 	};
 
