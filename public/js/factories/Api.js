@@ -13,13 +13,22 @@ app.factory('Api', function($rootScope, $http, $templateCache, Message)
 	{
 		var sendParams = (params) ? params : {};
 		//console.log(sendParams);
-		if (method === 'FILES') {
-			self.fileUploader(url, params, success, error);
-		} else {
-			$http({
-				method: method, url: url, data: sendParams, cache: $templateCache,
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-			}).success(success).error(error);
+		switch (method) {
+			case 'FILES':
+				self.fileUploader(url, params, success, error);
+				break;
+			case 'POST':
+				$http({
+					method: method, url: url, data: sendParams, cache: $templateCache,
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).success(success).error(error);
+				break;
+			case 'GET':
+				$http({
+					method: method, url: url, params: sendParams, cache: $templateCache,
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).success(success).error(error);
+				break;
 		}
 	};
 

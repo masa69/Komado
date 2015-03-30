@@ -1,6 +1,9 @@
 .bundle
+.sass-cache
 Gemfile.lock
 vendor
+config.ru
+log/*
 sass/.sass-cache
 sass/Font-Awesome
 public/js/bower_components/*

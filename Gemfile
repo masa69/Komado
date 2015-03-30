@@ -17,3 +17,7 @@ gem 'sass'
 gem 'bourbon'
 gem 'neat'
 gem 'bitters'
+
+# YouTubeAPI
+gem 'google-api-client'
+gem 'trollop'
