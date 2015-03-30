@@ -13,11 +13,11 @@ get '/:id' do
 	erb :index
 end
 
-get '/player' do
+get '/player/:id/' do
 	erb :index
 end
 
-get '/player/:id' do
+get '/player/:id/:videoId' do
 	erb :index
 end
 
