@@ -1,4 +1,4 @@
-app.controller('VideoController', function($scope, Video)
+app.controller('VideoController', function($scope, Video, Komado)
 {
 	'use strict';
 
@@ -12,6 +12,11 @@ app.controller('VideoController', function($scope, Video)
 	self.find = function()
 	{
 		Video.find(self.sendParams);
+	};
+
+	self.play = function(id)
+	{
+		Komado.play(id);
 	};
 
 	$scope.$root.$on('video:find:success', function()
