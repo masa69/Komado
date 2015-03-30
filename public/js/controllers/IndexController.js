@@ -1,4 +1,4 @@
-app.controller('IndexController', function($window)
+app.controller('IndexController', function($scope, $window)
 {
 	'use strict';
 
