@@ -11,7 +11,12 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 			controller: 'IndexController',
 			controllerAs: 'index',
 		})
-		.when('/player/:id', {
+		.when('/player/:id/', {
+			templateUrl: '/templates/views/player.html',
+			controller: 'PlayerController',
+			controllerAs: 'player',
+		})
+		.when('/player/:id/:videoId', {
 			templateUrl: '/templates/views/player.html',
 			controller: 'PlayerController',
 			controllerAs: 'player',
@@ -19,13 +24,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 	$locationProvider.html5Mode(true);
 }]);
 
-app.controller('RouteController', function($routeParams)
+app.controller('RouteController', function()
 {
 	'use strict';
-
 	var self = this;
-
-	console.log($routeParams);
 })
 	.directive('componentHeader', function()
 	{
