@@ -1,4 +1,4 @@
-app.controller('PlayerController', function($routeParams, $window)
+app.controller('PlayerController', function($routeParams)
 {
 	'use strict';
 
@@ -14,8 +14,7 @@ app.controller('PlayerController', function($routeParams, $window)
 
 	self.init = function()
 	{
-		var params   = $routeParams;
-		angular.forEach(params, function(val, key)
+		angular.forEach($routeParams, function(val, key)
 		{
 			self[key] = val;
 		});
