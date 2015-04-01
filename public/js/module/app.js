@@ -1,1 +1,1 @@
-var app = angular.module('komado', ['ngSanitize', 'ngAnimate', 'ngRoute']);
+var app = angular.module('komado', ['ngSanitize', 'ngAnimate', 'ngRoute', 'youtube-embed']);

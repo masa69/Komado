@@ -1,12 +1,19 @@
-app.controller('PlayerController', function($routeParams)
+app.controller('PlayerController', function($routeParams, $window)
 {
 	'use strict';
 
 	var self = this;
 
+	self.id      = null;
+	self.videoId = null;
+
 	self.init = function()
 	{
-		self.params = $routeParams;
+		var params   = $routeParams;
+		angular.forEach(params, function(val, key)
+		{
+			self[key] = val;
+		});
 	};
 
 	self.init();
