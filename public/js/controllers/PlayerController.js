@@ -4,6 +4,11 @@ app.controller('PlayerController', function($routeParams, $window)
 
 	var self = this;
 
+	self.setting = {
+		controls: 1,
+		autoplay: 1,
+	};
+
 	self.id      = null;
 	self.videoId = null;
 
