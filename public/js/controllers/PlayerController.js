@@ -4,9 +4,20 @@ app.controller('PlayerController', function($routeParams)
 
 	var self = this;
 
+	self.setting = {
+		controls: 1,
+		autoplay: 1,
+	};
+
+	self.id      = null;
+	self.videoId = null;
+
 	self.init = function()
 	{
-		self.params = $routeParams;
+		angular.forEach($routeParams, function(val, key)
+		{
+			self[key] = val;
+		});
 	};
 
 	self.init();
