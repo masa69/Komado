@@ -1,0 +1,14 @@
+.header {
+	.logo {
+		color: $color-white;
+		padding: 9px 0 0 8px;
+	}
+}
+.main {
+	.logo {
+		text-align: center;
+		font-size: $font-size-xxlarge + 30;
+		line-height: $line-height;
+		font-weight: normal;
+	}
+}

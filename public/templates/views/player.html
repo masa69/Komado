@@ -1,9 +1,10 @@
-<component-header></component-header>
-
-<h1>player</h1>
-
-<youtube-video video-id="player.videoId" player-vars="player.setting"></youtube-video>
-
-<h2>{{player.id}}</h2>
-
-<component-footer></component-footer>
+<div class="main">
+	<div class="yt-player yt-player-16by9">
+		<youtube-video class="yt-player-item" video-id="player.videoId" player-vars="player.setting"></youtube-video>
+	</div>
+	<div>{{player.id}}</div>
+	<div ng-controller="VideoController as video">
+		<video-search-bar></video-search-bar>
+		<video-list></video-list>
+	</div>
+</div>
