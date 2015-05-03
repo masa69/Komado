@@ -5,7 +5,7 @@ app.controller('PlayerController', function($routeParams)
 	var self = this;
 
 	self.setting = {
-		controls: 1,
+		controls: 0,
 		autoplay: 1,
 	};
 

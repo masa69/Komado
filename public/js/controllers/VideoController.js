@@ -24,6 +24,13 @@ app.controller('VideoController', function($scope, Video, Komado)
 		self.lists = Video.lists();
 	});
 })
+	.directive('videoSearchBar', function()
+	{
+		return {
+			restrict: 'E',
+			templateUrl: '/templates/video/videoSearchBar.html',
+		};
+	})
 	.directive('videoList', function()
 	{
 		return {

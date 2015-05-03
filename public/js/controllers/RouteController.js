@@ -7,9 +7,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 			controllerAs: 'index',
 		})
 		.when('/:id', {
-			templateUrl: '/templates/views/index.html',
-			controller: 'IndexController',
-			controllerAs: 'index',
+			templateUrl: '/templates/views/user.html',
+			controller: 'UserController',
+			controllerAs: 'user',
 		})
 		.when('/player/:id/', {
 			templateUrl: '/templates/views/player.html',

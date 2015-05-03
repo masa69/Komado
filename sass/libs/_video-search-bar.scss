@@ -1,0 +1,16 @@
+.video-search-bar {
+	form {
+		position: relative;
+		.bar {
+			padding-left: 30px;
+		}
+	}
+	.icon-search {
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: none;
+		color: $color-gray;
+		padding: 7px 0 7px 9px;
+	}
+}

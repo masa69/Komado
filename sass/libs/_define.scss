@@ -1,0 +1,21 @@
+$font-size-xxlarge : 22px;
+$font-size-xlarge  : 18px;
+$font-size-large   : 14px;
+$font-size-default : 13px;
+$font-size-small   : 12px;
+$font-size-xsmall  : 11px;
+$font-size-xxsmall : 10px;
+
+$line-height : 140%;
+
+$color-highlightgray : #f5f5f5;
+$color-lightgray     : #ddd;
+$color-gray          : #aaa;
+$color-darkgray      : #666;
+$color-deepdarkgray  : #222;
+
+$color-white  : #fff;
+$color-green  : #4AC198;
+$color-green2 : #65C8A1;
+
+$mobile: new-breakpoint(max-width 480px 4);
