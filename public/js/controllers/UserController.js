@@ -1,35 +1,48 @@
-app.controller('UserController', function($scope, $window, Komado)
+app.controller('UserController', function($scope, $routeParams, $window, User, componentHeader, playerSwitch, videoSearchBar, videoSearchList)
 {
 	'use strict';
 
 	var self = this;
 
+	self.componentHeader = componentHeader;
+	self.componentFooter = null;
+
+	self.playerSwitch    = playerSwitch;
+	self.videoSearchBar  = videoSearchBar;
+	self.videoSearchList = videoSearchList;
+
 	self.init = function()
 	{
-		self.id = null;
-		self.displayId = Komado.id();
+		User.init();
 	};
 
-	self.setId = function()
+	$scope.$root.$on('user:init', function()
 	{
-		Komado.setId(self.id);
-		self.init();
-	};
+		if ($routeParams.userId) {
+			if (!User.id()) {
+				$window.location.href = '/';
+				return;
+			}
+			if ($routeParams.userId !== User.id()) {
+				$window.location.href = '/' + User.id();
+				return;
+			}
+		}
+		self.componentHeader.init();
+		self.playerSwitch.init();
+		self.videoSearchBar.init();
+		self.videoSearchList.init();
+	});
 
-	self.open = function()
+	$scope.$root.$on('video:find', function()
 	{
-		Komado.open();
-	};
-
-	self.close = function()
-	{
-		Komado.close();
-	};
-
-	self.init();
+		self.videoSearchList.refreshList();
+	});
 
 	$scope.$root.$on('video:find:error', function()
 	{
-		$window.location.href = $window.location.href;
+
 	});
+
+	self.init();
 });
