@@ -8,20 +8,21 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 			controller: 'IndexController',
 			controllerAs: 'page',
 		})
-		.when('/:id', {
+		.when('/:userId', {
 			templateUrl: '/templates/views/user.html',
 			controller: 'UserController',
 			controllerAs: 'page',
 		})
-		.when('/player/:id/', {
+		.when('/player/:userId/', {
 			templateUrl: '/templates/views/player.html',
 			controller: 'PlayerController',
 			controllerAs: 'page',
 		})
-		.when('/player/:id/:videoId', {
+		.when('/player/:userId/:videoId', {
 			templateUrl: '/templates/views/player.html',
 			controller: 'PlayerController',
 			controllerAs: 'page',
 		});
-	$locationProvider.html5Mode(true);
+	// $locationProvider.html5Mode(true);
+	$locationProvider.html5Mode({enabled: true, requireBase: true, rewriteLinks: false });
 }]);
