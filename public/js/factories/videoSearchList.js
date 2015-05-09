@@ -17,7 +17,6 @@ app.factory('videoSearchList', function(Video, Player, User)
 	self.play = function(id)
 	{
 		Player.setVideoId(id);
-		Player.open();
 	};
 
 	return {

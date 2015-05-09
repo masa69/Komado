@@ -1,4 +1,4 @@
-app.controller('UserController', function($scope, $routeParams, $window, User, componentHeader, playerSwitch, videoSearchBar, videoSearchList)
+app.controller('UserController', function($scope, $routeParams, $window, User, Player, componentHeader, playerSwitch, videoSearchBar, videoSearchList)
 {
 	'use strict';
 
@@ -42,6 +42,11 @@ app.controller('UserController', function($scope, $routeParams, $window, User, c
 	$scope.$root.$on('video:find:error', function()
 	{
 
+	});
+
+	$scope.$root.$on('player:set:videoid', function()
+	{
+		Player.open();
 	});
 
 	self.init();

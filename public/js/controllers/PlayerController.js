@@ -1,11 +1,11 @@
-app.controller('PlayerController', function($scope, $routeParams, Player, videoSearchBar, videoSearchListOnPlayer)
+app.controller('PlayerController', function($scope, $routeParams, Player, videoSearchBar, videoSearchList)
 {
 	'use strict';
 
 	var self = this;
 
 	self.videoSearchBar  = videoSearchBar;
-	self.videoSearchList = videoSearchListOnPlayer;
+	self.videoSearchList = videoSearchList;
 
 	self.setting = {
 		controls: 0,
@@ -23,11 +23,6 @@ app.controller('PlayerController', function($scope, $routeParams, Player, videoS
 		});
 	};
 
-	$scope.$root.$on('player:set:videoid', function()
-	{
-		self.videoId = Player.videoId();
-	});
-
 	$scope.$root.$on('video:find', function()
 	{
 		self.videoSearchList.refreshList();
@@ -36,6 +31,11 @@ app.controller('PlayerController', function($scope, $routeParams, Player, videoS
 	$scope.$root.$on('video:find:error', function()
 	{
 
+	});
+
+	$scope.$root.$on('player:set:videoid', function()
+	{
+		self.videoId = Player.videoId();
 	});
 
 	self.init();
