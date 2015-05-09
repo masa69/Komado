@@ -6,6 +6,7 @@
 	height: 37px;
 	overflow: hidden;
 	background: $color-deepdarkgray;
+	z-index: 1000;
 	@include outer-container;
 	.left-contents {
 		@include span-columns(6);
