@@ -6,30 +6,49 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel="stylesheet" href="/css/style.css" type="text/css">
 	</head>
-	<body ng-controller="RouteController">
+	<body>
+
 		<div ng-view></div>
 
 		<script src="https://www.youtube.com/iframe_api"></script>
 
-		<script src="/js/bower_components/angular/angular.min.js" type="text/javascript"></script>
-		<script src="/js/bower_components/angular-animate/angular-animate.min.js" type="text/javascript"></script>
-		<script src="/js/bower_components/angular-route/angular-route.min.js" type="text/javascript"></script>
-		<script src="/js/bower_components/angular-sanitize/angular-sanitize.min.js" type="text/javascript"></script>
-		<script src="/js/bower_components/lodash/lodash.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/js/bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="/js/bower_components/angular-animate/angular-animate.min.js"></script>
+		<script type="text/javascript" src="/js/bower_components/angular-route/angular-route.min.js"></script>
+		<script type="text/javascript" src="/js/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+		<script type="text/javascript" src="/js/bower_components/angular-cookies/angular-cookies.min.js"></script>
 
-		<script src="/js/bower_components/angular-youtube-mb/dist/angular-youtube-embed.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/js/bower_components/moment/min/moment.min.js"></script>
+		<script type="text/javascript" src="/js/bower_components/lodash/lodash.min.js"></script>
 
-		<script src="/js/module/app.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/js/bower_components/angular-moment/angular-moment.min.js"></script>
+		<script type="text/javascript" src="/js/bower_components/angular-youtube-mb/dist/angular-youtube-embed.min.js"></script>
 
-		<script src="/js/controllers/IndexController.js" type="text/javascript"></script>
-		<script src="/js/controllers/PlayerController.js" type="text/javascript"></script>
-		<script src="/js/controllers/RouteController.js" type="text/javascript"></script>
-		<script src="/js/controllers/UserController.js" type="text/javascript"></script>
-		<script src="/js/controllers/VideoController.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/js/module/app.js"></script>
 
-		<script src="/js/factories/Api.js" type="text/javascript"></script>
-		<script src="/js/factories/Komado.js" type="text/javascript"></script>
-		<script src="/js/factories/Message.js" type="text/javascript"></script>
-		<script src="/js/factories/Video.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/js/controllers/IndexController.js"></script>
+		<script type="text/javascript" src="/js/controllers/PlayerController.js"></script>
+		<script type="text/javascript" src="/js/controllers/UserController.js"></script>
+
+		<script type="text/javascript" src="/js/directives/componentHeader.js"></script>
+		<script type="text/javascript" src="/js/directives/componentFooter.js"></script>
+		<script type="text/javascript" src="/js/directives/playerControl.js"></script>
+		<script type="text/javascript" src="/js/directives/playerSwitch.js"></script>
+		<script type="text/javascript" src="/js/directives/userEntrance.js"></script>
+		<script type="text/javascript" src="/js/directives/videoList.js"></script>
+		<script type="text/javascript" src="/js/directives/videoSearchBar.js"></script>
+
+		<script type="text/javascript" src="/js/factories/componentHeader.js"></script>
+		<script type="text/javascript" src="/js/factories/playerControl.js"></script>
+		<script type="text/javascript" src="/js/factories/playerSwitch.js"></script>
+		<script type="text/javascript" src="/js/factories/userEntrance.js"></script>
+		<script type="text/javascript" src="/js/factories/videoSearchBar.js"></script>
+		<script type="text/javascript" src="/js/factories/videoSearchList.js"></script>
+
+		<script type="text/javascript" src="/js/models/Api.js"></script>
+		<script type="text/javascript" src="/js/models/Message.js"></script>
+		<script type="text/javascript" src="/js/models/Player.js"></script>
+		<script type="text/javascript" src="/js/models/User.js"></script>
+		<script type="text/javascript" src="/js/models/Video.js"></script>
 	</body>
 </html>

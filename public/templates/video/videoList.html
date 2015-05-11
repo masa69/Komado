@@ -1,6 +1,6 @@
 <div class="video-list">
-	<div ng-repeat="videoList in video.lists" class="item">
-		<a href="" ng-click="video.play(videoList.id)">
+	<div ng-repeat="videoList in self.lists" class="item">
+		<a href="" ng-click="self.play(videoList.id)">
 			<div class="image">
 				<img ng-src="{{videoList.thumbnail}}" alt="{{videoList.title}}">
 			</div>

@@ -1,35 +1,34 @@
-app.controller('IndexController', function($scope, $window, Komado)
+app.controller('IndexController', function($scope, $window, User, componentHeader, userEntrance)
 {
 	'use strict';
 
 	var self = this;
 
+	self.componentHeader = componentHeader;
+	self.componentFooter = null;
+
+	self.userEntrance = userEntrance;
+
 	self.init = function()
 	{
-		self.id = null;
-		self.displayId = Komado.id();
+		User.init();
 	};
 
-	self.setId = function()
+	$scope.$root.$on('user:init', function()
 	{
-		Komado.setId(self.id);
-		self.init();
-	};
+		self.componentHeader.init();
+		self.userEntrance.init();
+	});
 
-	self.open = function()
+	$scope.$root.$on('user:signin', function()
 	{
-		Komado.open();
-	};
+		$window.location.href = '/' + User.id();
+	});
 
-	self.close = function()
+	$scope.$root.$on('user:signin:error', function()
 	{
-		Komado.close();
-	};
+		$window.location.href = '/' + User.id();
+	});
 
 	self.init();
-
-	$scope.$root.$on('video:find:error', function()
-	{
-		$window.location.href = $window.location.href;
-	});
 });

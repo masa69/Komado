@@ -2,7 +2,7 @@
 	<div class="logo left-contents">
 		<a href="/">Komado</a>
 	</div>
-	<div class="user right-contents">
-		<a href=""><i class="fa fa-user"></i>username</a>
+	<div ng-if="self.userId" class="user right-contents">
+		<a ng-href="/{{self.userId}}"><i class="fa fa-user"></i>{{self.userId}}</a>
 	</div>
 </header>

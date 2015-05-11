@@ -1998,6 +1998,7 @@ body {
   height: 37px;
   overflow: hidden;
   background: #222;
+  z-index: 1000;
   max-width: 68em;
   margin-left: auto;
   margin-right: auto; }
@@ -2085,7 +2086,7 @@ i.fa.right {
   height: 100%;
   border: 0; }
 
-.player-page-control {
+.player-switch {
   text-align: center;
   padding-bottom: 10px; }
 

@@ -1,14 +1,8 @@
-<component-header></component-header>
+<component-header set="page.componentHeader"></component-header>
 
 <div class="main page-index">
 	<h1 class="logo">Komado</h1>
-
-	<form ng-submit="index.setId()">
-		Your ID
-		<input type="text" ng-model="index.id" placeholder="a-z, A-Z, Underscore ( _ )" required>
-		<button type="submit"><i class="fa fa-user"></i>Create Account / Sign in</button>
-		<div class="btn default medium"><a href="/guest"><i class="fa fa-user"></i>Skip</a></div>
-	</form>
+	<user-entrance set="page.userEntrance"></user-entrance>
 </div>
 
-<component-footer></component-footer>
+<component-footer set="page.componentFooter"></component-footer>

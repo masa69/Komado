@@ -1,19 +1,22 @@
-app.factory('Komado', function($window)
+app.factory('Player', function(Api, $window)
 {
 	'use strict';
 
 	var self = this;
 
-	self.id      = 'demo';
-	self.videoId = '';
+	self.userId  = null;
+	self.videoId = null;
 	self.subwin  = null;
 
-	self.open = function(id, videoId)
+	self.open = function()
 	{
-		self.subwin = $window.open('/player/' + self.id + '/' + self.videoId, 'komado', 'width=150,height=250,scrollbars=yes');
+		if (!self.userId) {
+			return;
+		}
+		self.subwin = $window.open('/player/' + self.userId + '/' + self.videoId, 'komado', 'width=150,height=400,scrollbars=yes');
 	};
 
-	self.close = function(id, videoId)
+	self.close = function()
 	{
 		if (!self.subwin || self.subwin.closed) {
 			return;
@@ -22,10 +25,10 @@ app.factory('Komado', function($window)
 		$window.alert('thanks :)');
 	};
 
-	self.setId = function(id)
+	self.setUserId = function(id)
 	{
 		if (id) {
-			self.id = id;
+			self.userId = id;
 		}
 	};
 
@@ -33,21 +36,18 @@ app.factory('Komado', function($window)
 	{
 		if (id) {
 			self.videoId = id;
+			Api.emit('player:set:videoid');
 		}
 	};
 
 	return {
-		id: function()
-		{
-			return self.id;
-		},
 		videoId: function()
 		{
 			return self.videoId;
 		},
-		setId: function(id)
+		setUserId: function(id)
 		{
-			self.setId(id);
+			self.setUserId(id);
 		},
 		setVideoId: function(id)
 		{
@@ -60,11 +60,6 @@ app.factory('Komado', function($window)
 		close: function()
 		{
 			self.close();
-		},
-		play: function(id)
-		{
-			self.setVideoId(id);
-			self.open();
 		}
 	};
 });

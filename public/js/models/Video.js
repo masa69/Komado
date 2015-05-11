@@ -12,7 +12,7 @@ app.factory('Video', function(Api)
 			function(data, status)
 			{
 				self.lists = data;
-				Api.emit('video:find:success');
+				Api.emit('video:find');
 			},
 			function(data, status)
 			{

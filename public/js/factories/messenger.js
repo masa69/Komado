@@ -1,4 +1,4 @@
-app.controller('MessageController', function($scope, $timeout, Message)
+app.factory('messenger', function($scope, $timeout, Message)
 {
 	'use strict';
 
