@@ -1,8 +1,10 @@
-app.factory('playerSwitch', function(Player, User)
+app.factory('playerSwitch', function(Player)
 {
+	'use strict';
+
 	var init = function()
 	{
-		Player.setUserId(User.id());
+
 	};
 
 	var open = function()
