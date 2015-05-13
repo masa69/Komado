@@ -8,19 +8,14 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 			controller: 'IndexController',
 			controllerAs: 'page',
 		})
+		.when('/player/youtube', {
+			templateUrl: '/templates/views/player.html',
+			controller: 'PlayerController',
+			controllerAs: 'page',
+		})
 		.when('/:userId', {
 			templateUrl: '/templates/views/user.html',
 			controller: 'UserController',
-			controllerAs: 'page',
-		})
-		.when('/player/:userId/', {
-			templateUrl: '/templates/views/player.html',
-			controller: 'PlayerController',
-			controllerAs: 'page',
-		})
-		.when('/player/:userId/:videoId', {
-			templateUrl: '/templates/views/player.html',
-			controller: 'PlayerController',
 			controllerAs: 'page',
 		});
 	// $locationProvider.html5Mode(true);
