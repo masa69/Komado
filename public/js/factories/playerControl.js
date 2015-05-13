@@ -1,28 +1,56 @@
 app.factory('playerControl', function(Player)
 {
-	var id = null;
+	'use strict';
+
+	var videoId = null;
+	var playing = false;
+	var setting = {};
+	var youtube = {};
 
 	var init = function()
 	{
-		id = null;
-		self.displayId = Player.id();
+		this.refreshSetting();
+		this.refreshVideoId();
 	};
 
-	var open = function()
+	var refreshSetting = function()
 	{
-		Player.open();
+		this.setting = Player.setting();
 	};
 
-	var close = function()
+	var refreshVideoId = function()
 	{
-		Player.close();
+		this.videoId = Player.videoId();
+	};
+
+	var setPlayingStatus = function(status)
+	{
+		switch (status) {
+			case 'ready':
+			case 'playing':
+				this.playing = true;
+				break;
+			case 'paused':
+			case 'ended':
+				this.playing = false;
+				break;
+		}
+	};
+
+	var updateSetting = function(key, val)
+	{
+		Player.updateSetting(key, val);
 	};
 
 	return {
-		init  : init,
-		id    : id,
-		setId : setId,
-		open  : open,
-		close : close
+		init          : init,
+		videoId       : videoId,
+		playing       : playing,
+		setting       : setting,
+		youtube       : youtube,
+		updateSetting : updateSetting,
+		refreshSetting   : refreshSetting,
+		refreshVideoId   : refreshVideoId,
+		setPlayingStatus : setPlayingStatus,
 	};
 });

@@ -1,4 +1,4 @@
-app.factory('videoSearchList', function(Video, Player, User)
+app.factory('videoSearchList', function(Video, Player)
 {
 	'use strict';
 
@@ -6,7 +6,7 @@ app.factory('videoSearchList', function(Video, Player, User)
 
 	var init = function()
 	{
-		Player.setUserId(User.id());
+
 	};
 
 	self.refreshList = function()

@@ -1,4 +1,4 @@
-app.controller('PlayerController', function($scope, $routeParams, Player, videoSearchBar, videoSearchList)
+app.controller('PlayerController', function($scope, User, Player, playerControl, videoSearchBar, videoSearchList)
 {
 	'use strict';
 
@@ -6,22 +6,24 @@ app.controller('PlayerController', function($scope, $routeParams, Player, videoS
 
 	self.videoSearchBar  = videoSearchBar;
 	self.videoSearchList = videoSearchList;
-
-	self.setting = {
-		controls: 0,
-		autoplay: 1,
-	};
-
-	self.userId  = null;
-	self.videoId = null;
+	self.playerControl   = playerControl;
 
 	self.init = function()
 	{
-		angular.forEach($routeParams, function(val, key)
-		{
-			self[key] = val;
-		});
+		User.init();
 	};
+
+	$scope.$root.$on('user:init', function()
+	{
+		Player.init();
+		self.videoSearchBar.init();
+		self.videoSearchList.init();
+	});
+
+	$scope.$root.$on('player:init', function()
+	{
+		self.playerControl.init();
+	});
 
 	$scope.$root.$on('video:find', function()
 	{
@@ -35,7 +37,36 @@ app.controller('PlayerController', function($scope, $routeParams, Player, videoS
 
 	$scope.$root.$on('player:set:videoid', function()
 	{
-		self.videoId = Player.videoId();
+		self.playerControl.refreshVideoId();
+	});
+
+	$scope.$root.$on('player:set:setting', function()
+	{
+		self.playerControl.refreshSetting();
+	});
+
+	$scope.$on('youtube.player.ready', function($event, player)
+	{
+		self.playerControl.setPlayingStatus('ready');
+	});
+
+	$scope.$on('youtube.player.playing', function($event, player)
+	{
+		self.playerControl.setPlayingStatus('playing');
+	});
+
+	$scope.$on('youtube.player.paused', function($event, player)
+	{
+		self.playerControl.setPlayingStatus('paused');
+	});
+
+	$scope.$on('youtube.player.ended', function($event, player)
+	{
+		self.playerControl.setPlayingStatus('ended');
+
+		if (self.playerControl.setting.loop === 1) {
+			player.playVideo();
+		}
 	});
 
 	self.init();

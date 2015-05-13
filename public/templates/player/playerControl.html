@@ -1,0 +1,9 @@
+<div class="yt-player yt-player-16by9">
+	<youtube-video class="yt-player-item" player="self.youtube" video-id="self.videoId" player-vars="self.setting"></youtube-video>
+</div>
+<div class="player-control">
+	<a ng-if="self.setting.loop == 1" href="" ng-click="self.updateSetting('loop', 0)"><i class="fa fa-repeat"></i>on</a>
+	<a ng-if="self.setting.loop == 0" href="" ng-click="self.updateSetting('loop', 1)"><i class="fa fa-repeat"></i>off</a>|
+	<a ng-if="!self.playing" href="" ng-click="self.youtube.playVideo()"><i class="fa fa-play"></i></a>
+	<a ng-if="self.playing" href="" ng-click="self.youtube.pauseVideo()"><i class="fa fa-pause"></i></a>
+</div>

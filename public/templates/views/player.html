@@ -1,8 +1,5 @@
 <div class="main">
-	<div class="yt-player yt-player-16by9">
-		<youtube-video class="yt-player-item" video-id="page.videoId" player-vars="page.setting"></youtube-video>
-	</div>
-	<div>{{player.userId}}</div>
+	<player-control set="page.playerControl"></player-control>
 	<video-search-bar set="page.videoSearchBar"></video-search-bar>
 	<div class="video-list-menu">Search | History | Favorite</div>
 	<video-list set="page.videoSearchList"></video-list>
