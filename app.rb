@@ -5,6 +5,8 @@ require 'dalli'
 require 'google/api_client'
 require 'trollop'
 
+require './models/ReturnToFront'
+
 get '/' do
 	erb :index
 end
@@ -87,11 +89,13 @@ end
 
 get '/api/youtube/history/get/:user' do
 
+	res  = ReturnToFront.new
+
 	user = params['user']
 
 	begin
 		if !user
-			raise 'user is required'
+			res.exception('user is required', 404)
 		end
 		dc     = Dalli::Client.new('localhost:11211')
 		videos = dc.get('history_' + user)
@@ -100,25 +104,17 @@ get '/api/youtube/history/get/:user' do
 			id = i + 1
 			videos[i]['id'] = id.to_s
 		end
-
-		status 200
-		res = {
-			'result'  => 'success',
-			'message' => '',
-			'data'    => videos,
-		}
-		json res, :content_type => :js
+		status res.getCode()
+		json res.success(videos), :content_type => :js
 	rescue Exception => e
-		status 500
-		res = {
-			'result'  => 'failed',
-			'message' => e,
-			'data'    => '',
-		}
+		status res.getCode()
+		json res.failed(e), :content_type => :js
 	end
 end
 
 get '/api/youtube/history/add/:user' do
+
+	res  = ReturnToFront.new
 
 	MAX_ITEMS = 30
 
@@ -128,26 +124,26 @@ get '/api/youtube/history/add/:user' do
 	thumbnail = params[:thumbnail]
 	title     = params[:title]
 
-	# videoId   = '1'
-	# type      = 'type'
-	# thumbnail = 'thumbnail'
-	# title     = 'title'
+	videoId   = '1'
+	type      = 'type'
+	thumbnail = 'thumbnail'
+	title     = 'title'
 
 	begin
 		if !user
-			raise 'user is required'
+			res.exception('user is required', 404)
 		end
 		if !videoId
-			raise 'video_id is required'
+			res.exception('video_id is required', 404)
 		end
 		if !type
-			raise 'type is required'
+			res.exception('type is required', 404)
 		end
 		if !thumbnail
-			raise 'thumbnail is required'
+			res.exception('thumbnail is required', 404)
 		end
 		if !title
-			raise 'title is required'
+			res.exception('title is required', 404)
 		end
 
 		videoData = {
@@ -177,35 +173,27 @@ get '/api/youtube/history/add/:user' do
 
 		dc.set('history_' + user, videos)
 
-		status 200
-		res = {
-			'result'  => 'success',
-			'message' => '',
-			'data'    => '',
-		}
-		json res, :content_type => :js
+		status res.getCode()
+		json res.success(videos), :content_type => :js
 	rescue Exception => e
-		status 500
-		res = {
-			'result'  => 'failed',
-			'message' => e,
-			'data'    => '',
-		}
-		json res, :content_type => :js
+		status res.getCode()
+		json res.failed(e), :content_type => :js
 	end
 end
 
 get '/api/youtube/history/delete/:user' do
+
+	res  = ReturnToFront.new
 
 	user = params['user']
 	id   = params[:list_id]
 
 	begin
 		if !user
-			raise 'user is required'
+			res.exception('user is required', 404)
 		end
 		if !id
-			raise 'list_id is required'
+			res.exception('list_id is required', 404)
 		end
 
 		dc = Dalli::Client.new('localhost:11211')
@@ -217,20 +205,10 @@ get '/api/youtube/history/delete/:user' do
 
 		dc.set('history_' + user, videos)
 
-		status 200
-		res = {
-			'result'  => 'success',
-			'message' => '',
-			'data'    => '',
-		}
-		json res, :content_type => :js
+		status res.getCode()
+		json res.success(videos), :content_type => :js
 	rescue Exception => e
-		status 500
-		res = {
-			'result'  => 'failed',
-			'message' => e,
-			'data'    => '',
-		}
-		json res, :content_type => :js
+		status res.getCode()
+		json res.failed(e), :content_type => :js
 	end
 end
