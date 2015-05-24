@@ -4,6 +4,8 @@ class ReturnToFront
 
 	def success(data)
 		@@code = 200
+		data = (data === true) ? nil : data;
+		data = (data) ? data : '';
 		res = {
 			'result'  => 'success',
 			'message' => '',

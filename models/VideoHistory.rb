@@ -18,9 +18,13 @@ class VideoHistory
 		dc     = Dalli::Client.new('localhost:11211')
 		videos = dc.get('history_' + user)
 
-		videos.each_index do |i|
-			id = i + 1
-			videos[i]['id'] = id.to_s
+		if videos
+			videos.each_index do |i|
+				id = i + 1
+				videos[i]['id'] = id.to_s
+			end
+		else
+			videos = []
 		end
 
 		videos
@@ -75,6 +79,8 @@ class VideoHistory
 		end
 
 		dc.set('history_' + user, videos)
+
+		return true
 	end
 
 	def delete(user, id)
@@ -94,5 +100,7 @@ class VideoHistory
 		end
 
 		dc.set('history_' + user, videos)
+
+		return true
 	end
 end

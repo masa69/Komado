@@ -23,6 +23,12 @@ end
 # API
 # ================
 
+error do |e|
+  status 500
+  body env['sinatra.error'].message
+  # body e.message
+end
+
 def pushToLists(id, type, thumbnail, title)
 	res = {
 		'id' => id,
@@ -88,15 +94,20 @@ get '/api/youtube/find' do
 	end
 end
 
+def initVideoHistory
+	returnToFront = ReturnToFront.new
+	videoHistory  = VideoHistory.new(returnToFront)
+	return returnToFront, videoHistory
+end
+
 get '/api/youtube/history/get/:user' do
 
-	res          = ReturnToFront.new
-	VideoHistory = VideoHistory.new(res)
+	res, videoHistory = initVideoHistory
 
 	user = params['user']
 
 	begin
-		videos = VideoHistory.getList(user)
+		videos = videoHistory.getList(user)
 		status res.getCode()
 		json res.success(videos), :content_type => :js
 	rescue Exception => e
@@ -107,8 +118,7 @@ end
 
 get '/api/youtube/history/add/:user' do
 
-	res          = ReturnToFront.new
-	VideoHistory = VideoHistory.new(res)
+	res, videoHistory = initVideoHistory
 
 	user      = params['user']
 	videoId   = params[:video_id]
@@ -117,9 +127,9 @@ get '/api/youtube/history/add/:user' do
 	title     = params[:title]
 
 	begin
-		VideoHistory.add(user, videoId, type, thumbnail, title)
+		videoRes = videoHistory.add(user, videoId, type, thumbnail, title)
 		status res.getCode()
-		json res.success(videos), :content_type => :js
+		json res.success(videoRes), :content_type => :js
 	rescue Exception => e
 		status res.getCode()
 		json res.failed(e), :content_type => :js
@@ -128,16 +138,15 @@ end
 
 get '/api/youtube/history/delete/:user' do
 
-	res          = ReturnToFront.new
-	VideoHistory = VideoHistory.new(res)
+	res, videoHistory = initVideoHistory
 
 	user   = params['user']
 	listId = params[:list_id]
 
 	begin
-		VideoHistory.delete(user, listId)
+		videoRes = videoHistory.delete(user, listId)
 		status res.getCode()
-		json res.success(videos), :content_type => :js
+		json res.success(videoRes), :content_type => :js
 	rescue Exception => e
 		status res.getCode()
 		json res.failed(e), :content_type => :js
