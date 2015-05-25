@@ -32,10 +32,10 @@ class VideoHistory
 
 	def add(user, videoId, type, thumbnail, title)
 
-		videoId   = '1'
-		type      = 'type'
-		thumbnail = 'thumbnail'
-		title     = 'title'
+		# videoId   = '1'
+		# type      = 'type'
+		# thumbnail = 'thumbnail'
+		# title     = 'title'
 
 		if !user
 			@@e.exception('user is required', 404)
@@ -84,6 +84,8 @@ class VideoHistory
 	end
 
 	def delete(user, id)
+
+		# id = '1'
 
 		if !user
 			res.exception('user is required', 404)
