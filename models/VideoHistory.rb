@@ -96,7 +96,7 @@ class VideoHistory
 		videos = dc.get('history_' + user)
 
 		if videos.kind_of? (Array)
-			videos.slice!(id)
+			videos.slice!(id.to_i - 1)
 		end
 
 		dc.set('history_' + user, videos)
