@@ -1,9 +1,9 @@
 class ReturnToFront
 
-	@@code = 500
+	@@code = nil
 
 	def success(data)
-		@@code = 200
+		@@code = nil
 		data = (data === true) ? nil : data;
 		data = (data) ? data : '';
 		res = {
@@ -15,6 +15,7 @@ class ReturnToFront
 	end
 
 	def failed(mes)
+		@@code = nil
 		res = {
 			'result'  => 'failed',
 			'message' => mes,
@@ -24,11 +25,11 @@ class ReturnToFront
 	end
 
 	def exception(mes, code)
-		code = code
+		@@code = code
 		raise mes
 	end
 
-	def getCode()
-		@@code
+	def errorCode()
+		(@@code) ? @@code : 500
 	end
 end

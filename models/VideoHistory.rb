@@ -1,33 +1,50 @@
 class VideoHistory
 
-	@@e = nil
+	@@failed     = nil
+	@@collection = nil
+
 	@@MAX_ITEMS = 30
 
 	def initialize(exceptionClass)
-		if !@@e
-			@@e = exceptionClass
+
+		if !@@failed
+			@@failed = exceptionClass
 		end
+
+		if !@@collection
+			connection = Mongo::Connection.new('localhost', 27017)
+			db = connection.db('komado')
+			@@collection = db.collection('video_history')
+		end
+	end
+
+	def get(user)
+		@@collection.find(:user => user)
+	end
+
+	def getIdByVideoId(user, videoId)
+		@@collection.find(:user => user, :videoId => videoId)
 	end
 
 	def getList(user)
 
+		res = []
+		i   = 0
+
 		if !user
-			@@e.exception('user is required', 404)
+			@@failed.exception('user is required', 404)
 		end
 
-		dc     = Dalli::Client.new('localhost:11211')
-		videos = dc.get('history_' + user)
+		videos = get(user)
 
-		if videos
-			videos.each_index do |i|
-				id = i + 1
-				videos[i]['id'] = id.to_s
+		if videos.count > 0
+			videos.each do |video|
+				res[i] = video
+				i += 1
 			end
-		else
-			videos = []
 		end
 
-		videos
+		res
 	end
 
 	def add(user, videoId, type, thumbnail, title)
@@ -38,70 +55,73 @@ class VideoHistory
 		# title     = 'title'
 
 		if !user
-			@@e.exception('user is required', 404)
+			@@failed.exception('user is required', 404)
 		end
 		if !videoId
-			@@e.exception('video_id is required', 404)
+			@@failed.exception('videoId is required', 404)
 		end
 		if !type
-			@@e.exception('type is required', 404)
+			@@failed.exception('type is required', 404)
 		end
 		if !thumbnail
-			@@e.exception('thumbnail is required', 404)
+			@@failed.exception('thumbnail is required', 404)
 		end
 		if !title
-			@@e.exception('title is required', 404)
+			@@failed.exception('title is required', 404)
+		end
+
+		beforeVideos = getIdByVideoId(user, videoId)
+
+		if beforeVideos.count > 0
+			beforeVideos.each do |video|
+				delete(user, video['_id'].to_s)
+			end
 		end
 
 		videoData = {
+			'user'      => user,
 			'videoId'   => videoId,
 			'type'      => type,
 			'thumbnail' => thumbnail,
 			'title'     => title,
 		}
 
-		options = {:expires_in => 60*60*24*7}
-		dc = Dalli::Client.new('localhost:11211', options)
-		videos = dc.get('history_' + user)
+		@@collection.insert(videoData)
 
-		if videos.kind_of? (Array)
-			videos.reverse!
-			sub    = Array[videoData]
-			videos = videos - sub
-			videos << videoData
-			videos.reverse!
-		else
-			videos = Array[videoData]
+		videos = get(user)
+
+		if videos.count > @@MAX_ITEMS
+			i = 0
+			videos.each do |video|
+				if i >= @@MAX_ITEMS
+					delete(user, video['_id'].to_s)
+				end
+				i += 1
+			end
 		end
-
-		if videos.length > @@MAX_ITEMS
-			videos.slice!(@@MAX_ITEMS - 1, videos.length - @@MAX_ITEMS)
-		end
-
-		dc.set('history_' + user, videos)
 
 		return true
 	end
 
-	def delete(user, id)
+	def delete(user, listId)
 
-		# id = '1'
+		# listId = '1'
 
 		if !user
-			res.exception('user is required', 404)
-		end
-		if !id
-			res.exception('list_id is required', 404)
+			@@failed.exception('user is required', 404)
 		end
 
-		dc = Dalli::Client.new('localhost:11211')
-		videos = dc.get('history_' + user)
-
-		if videos.kind_of? (Array)
-			videos.slice!(id.to_i - 1)
+		if !listId
+			@@failed.exception('listId is required', 404)
 		end
 
-		dc.set('history_' + user, videos)
+		id = BSON::ObjectId(listId)
+
+		@@collection.find('_id' => id).each do |video|
+			if video['user'] == user
+				@@collection.remove(video)
+			end
+		end
 
 		return true
 	end
