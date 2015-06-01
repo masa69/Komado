@@ -1987,6 +1987,7 @@ html, body {
   margin: 0; }
 
 body {
+  color: #333;
   font-size: 13px;
   line-height: 140%; }
 
@@ -2103,6 +2104,7 @@ i.fa.right {
     display: block;
     margin-right: 2.35765%;
     width: 23.23176%;
+    position: relative;
     height: 127px;
     overflow-y: hidden;
     padding: 0 3px;
@@ -2129,10 +2131,25 @@ i.fa.right {
       font-size: 12px;
       line-height: 140%;
       font-weight: bold; }
+    .video-list .item .playlist {
+      position: fixed;
+      top: -10000px; }
+    .video-list .item .playlist.isPlaylist {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(255, 255, 255, 0.8);
+      color: #222;
+      font-weight: bold;
+      border: 2px #222 solid;
+      padding: 1px 2px;
+      margin: 0 0 0 3px; }
 
 .video-list-menu {
   text-align: center;
   padding: 12px 0 22px; }
+  .video-list-menu .active {
+    color: #333; }
 
 .video-search-bar form {
   position: relative; }

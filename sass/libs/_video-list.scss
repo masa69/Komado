@@ -2,6 +2,7 @@
 	@include outer-container;
 	.item {
 		@include span-columns(3);
+		position: relative;
 		height: 127px;
 		overflow-y: hidden;
 		padding: 0 3px;
@@ -26,6 +27,21 @@
 			font-size: $font-size-small;
 			line-height: $line-height;
 			font-weight: bold;
+		}
+		.playlist {
+			position: fixed;
+			top: -10000px;
+		}
+		.playlist.isPlaylist {
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: rgba(255, 255, 255, 0.8);
+			color: $color-deepdarkgray;
+			font-weight: bold;
+			border: 2px $color-deepdarkgray solid;
+			padding: 1px 2px;
+			margin: 0 0 0 3px;
 		}
 	}
 }
