@@ -4,6 +4,10 @@ require "sinatra/json"
 require 'dalli'
 require 'google/api_client'
 require 'trollop'
+require 'mongo'
+
+require './models/VideoHistory'
+require './models/ReturnToFront'
 
 get '/' do
 	erb :index
@@ -20,9 +24,15 @@ end
 # API
 # ================
 
-def pushToLists(id, type, thumbnail, title)
+error do |e|
+  status 500
+  body env['sinatra.error'].message
+  # body e.message
+end
+
+def pushToLists(videoId, type, thumbnail, title)
 	res = {
-		'id' => id,
+		'videoId' => videoId,
 		'type' => type,
 		'thumbnail' => thumbnail,
 		'title' => title,
@@ -82,5 +92,64 @@ get '/api/youtube/find' do
 	rescue Google::APIClient::TransmissionError => e
 		status 500
 		e.result.body
+	end
+end
+
+def initVideoHistory
+	returnToFront = ReturnToFront.new
+	videoHistory  = VideoHistory.new(returnToFront)
+	return returnToFront, videoHistory
+end
+
+get '/api/youtube/history/get/:user' do
+
+	res, videoHistory = initVideoHistory
+
+	user = params['user']
+
+	begin
+		videos = videoHistory.getList(user)
+		status 200
+		json res.success(videos), :content_type => :js
+	rescue Exception => e
+		status res.errorCode()
+		json res.failed(e), :content_type => :js
+	end
+end
+
+post '/api/youtube/history/add/:user' do
+
+	res, videoHistory = initVideoHistory
+
+	user      = params['user']
+	videoId   = params[:videoId]
+	type      = params[:type]
+	thumbnail = params[:thumbnail]
+	title     = params[:title]
+
+	begin
+		videoRes = videoHistory.add(user, videoId, type, thumbnail, title)
+		status 200
+		json res.success(videoRes), :content_type => :js
+	rescue Exception => e
+		status res.errorCode()
+		json res.failed(e), :content_type => :js
+	end
+end
+
+post '/api/youtube/history/delete/:user' do
+
+	res, videoHistory = initVideoHistory
+
+	user   = params['user']
+	listId = params[:listId]
+
+	begin
+		videoRes = videoHistory.delete(user, listId)
+		status 200
+		json res.success(videoRes), :content_type => :js
+	rescue Exception => e
+		status res.errorCode()
+		json res.failed(e), :content_type => :js
 	end
 end

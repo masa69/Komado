@@ -1,4 +1,7 @@
 .video-list-menu {
 	text-align: center;
 	padding: 12px 0 22px;
+	.active {
+		color: $color-default;
+	}
 }

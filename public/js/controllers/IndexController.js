@@ -14,6 +14,8 @@ app.controller('IndexController', function($scope, $window, User, componentHeade
 		User.init();
 	};
 
+
+
 	$scope.$root.$on('user:init', function()
 	{
 		self.componentHeader.init();

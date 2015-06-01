@@ -18,14 +18,11 @@ app.factory('Api', function($rootScope, $http, $templateCache, Message)
 				self.fileUploader(url, params, success, error);
 				break;
 			case 'POST':
-				$http({
-					method: method, url: url, data: sendParams, cache: $templateCache,
-					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-				}).success(success).error(error);
+				self.post(url, sendParams, success, error);
 				break;
 			case 'GET':
 				$http({
-					method: method, url: url, params: sendParams, cache: $templateCache,
+					method: method, url: url, params: sendParams,// cache: $templateCache,
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).success(success).error(error);
 				break;
@@ -41,8 +38,24 @@ app.factory('Api', function($rootScope, $http, $templateCache, Message)
 			method: 'POST', url: url, data: params,
 			withCredentials: true,
             headers: {'Content-Type': undefined },
-			cache: $templateCache,
+			// cache: $templateCache,
 			transformRequest: angular.identity
+		}).success(success).error(error);
+	};
+
+	self.post = function(url, sendParams, success, error)
+	{
+		var params = new FormData();
+		angular.forEach(sendParams, function(val, key)
+		{
+			if (val) {
+				params.append(key, val);
+			}
+		});
+		$http({
+			method: 'POST', url: url, data: params,// cache: $templateCache,
+			headers: {'Content-Type': undefined },
+			withCredentials: true, transformRequest: angular.identity
 		}).success(success).error(error);
 	};
 

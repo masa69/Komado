@@ -1,4 +1,6 @@
-app.controller('UserController', function($scope, $routeParams, $window, User, Player, componentHeader, playerSwitch, videoSearchBar, videoSearchList)
+app.controller('UserController', function(
+	$scope, $routeParams, $window,
+	User, Player, componentHeader, playerSwitch, videoSearchBar, videoSearchList, videoHistoryList)
 {
 	'use strict';
 
@@ -7,14 +9,36 @@ app.controller('UserController', function($scope, $routeParams, $window, User, P
 	self.componentHeader = componentHeader;
 	self.componentFooter = null;
 
-	self.playerSwitch    = playerSwitch;
-	self.videoSearchBar  = videoSearchBar;
-	self.videoSearchList = videoSearchList;
+	self.playerSwitch     = playerSwitch;
+	self.videoSearchBar   = videoSearchBar;
+	self.videoSearchList  = videoSearchList;
+	self.videoHistoryList = videoHistoryList;
+
+	self.list = {
+		search   : true,
+		history  : false,
+		favorite : false,
+	};
 
 	self.init = function()
 	{
 		User.init();
 	};
+
+	self.switchList = function(type)
+	{
+		angular.forEach(self.list, function(val, key)
+		{
+			self.list[key] = false;
+		});
+		self.list[type] = true;
+
+		if (self.list.history) {
+			self.videoHistoryList.initList();
+		}
+	};
+
+
 
 	$scope.$root.$on('user:init', function()
 	{
@@ -32,10 +56,14 @@ app.controller('UserController', function($scope, $routeParams, $window, User, P
 		self.playerSwitch.init();
 		self.videoSearchBar.init();
 		self.videoSearchList.init();
+		self.videoHistoryList.init();
 	});
+
+
 
 	$scope.$root.$on('video:find', function()
 	{
+		self.switchList('search');
 		self.videoSearchList.refreshList();
 	});
 
@@ -44,9 +72,41 @@ app.controller('UserController', function($scope, $routeParams, $window, User, P
 
 	});
 
+
+
 	$scope.$root.$on('player:set:videoid', function()
 	{
 		Player.open();
+	});
+
+	$scope.$root.$on('videohistory:getlist', function()
+	{
+		self.videoHistoryList.refreshList();
+	});
+
+	$scope.$root.$on('videohistory:getlist:error', function()
+	{
+
+	});
+
+	$scope.$root.$on('videohistory:add', function()
+	{
+		self.videoHistoryList.initList();
+	});
+
+	$scope.$root.$on('videohistory:add:error', function()
+	{
+
+	});
+
+	$scope.$root.$on('videohistory:delete', function()
+	{
+		self.videoHistoryList.initList();
+	});
+
+	$scope.$root.$on('videohistory:delete:error', function()
+	{
+
 	});
 
 	self.init();

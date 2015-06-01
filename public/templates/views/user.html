@@ -3,8 +3,15 @@
 <div class="main page-user">
 	<player-switch set="page.playerSwitch"></player-switch>
 	<video-search-bar set="page.videoSearchBar"></video-search-bar>
-	<div class="video-list-menu">Search | History | Favorite</div>
-	<video-list set="page.videoSearchList"></video-list>
+	<div class="video-list-menu">
+		<a ng-class="{active : page.list.search}" ng-click="page.switchList('search')" href="">Search</a> | <a ng-class="{active : page.list.history}" ng-click="page.switchList('history')" href="">History</a> | <a ng-class="{active : page.list.favorite}" ng-click="page.switchList('favorite')" href="">Favorite</a>
+	</div>
+	<div ng-if="page.list.search">
+		<video-list set="page.videoSearchList"></video-list>
+	</div>
+	<div ng-if="page.list.history">
+		<video-list set="page.videoHistoryList"></video-list>
+	</div>
 </div>
 
 <component-footer set="page.componentFooter"></component-footer>

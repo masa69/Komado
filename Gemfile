@@ -21,3 +21,7 @@ gem 'bitters'
 # YouTubeAPI
 gem 'google-api-client'
 gem 'trollop'
+
+# MongoDB
+gem 'mongo'
+gem 'bson_ext'

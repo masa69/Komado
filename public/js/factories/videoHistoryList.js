@@ -1,4 +1,4 @@
-app.factory('videoSearchList', function(Video, VideoHistory, User, Player)
+app.factory('videoHistoryList', function(VideoHistory, User, Player)
 {
 	'use strict';
 
@@ -9,9 +9,14 @@ app.factory('videoSearchList', function(Video, VideoHistory, User, Player)
 		VideoHistory.init(User.id());
 	};
 
+	var initList = function()
+	{
+		VideoHistory.initList();
+	};
+
 	var refreshList = function()
 	{
-		this.lists = Video.lists();
+		this.lists = VideoHistory.lists();
 	};
 
 	var play = function(video)
@@ -20,10 +25,20 @@ app.factory('videoSearchList', function(Video, VideoHistory, User, Player)
 		VideoHistory.add(video);
 	};
 
+	var remove = function(id)
+	{
+		var params = {
+			listId : id,
+		};
+		VideoHistory.delete(params);
+	};
+
 	return {
 		init        : init,
+		initList    : initList,
 		lists       : lists,
 		refreshList : refreshList,
 		play        : play,
+		remove      : remove,
 	};
 });
