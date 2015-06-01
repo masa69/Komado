@@ -44,7 +44,7 @@ class VideoHistory
 			end
 		end
 
-		res
+		res.reverse
 	end
 
 	def add(user, videoId, type, thumbnail, title)
