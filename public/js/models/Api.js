@@ -22,7 +22,7 @@ app.factory('Api', function($rootScope, $http, $templateCache, Message)
 				break;
 			case 'GET':
 				$http({
-					method: method, url: url, params: sendParams, cache: $templateCache,
+					method: method, url: url, params: sendParams,// cache: $templateCache,
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).success(success).error(error);
 				break;
@@ -38,7 +38,7 @@ app.factory('Api', function($rootScope, $http, $templateCache, Message)
 			method: 'POST', url: url, data: params,
 			withCredentials: true,
             headers: {'Content-Type': undefined },
-			cache: $templateCache,
+			// cache: $templateCache,
 			transformRequest: angular.identity
 		}).success(success).error(error);
 	};
@@ -53,7 +53,7 @@ app.factory('Api', function($rootScope, $http, $templateCache, Message)
 			}
 		});
 		$http({
-			method: 'POST', url: url, data: params, cache: $templateCache,
+			method: 'POST', url: url, data: params,// cache: $templateCache,
 			headers: {'Content-Type': undefined },
 			withCredentials: true, transformRequest: angular.identity
 		}).success(success).error(error);
