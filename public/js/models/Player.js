@@ -8,16 +8,25 @@ app.factory('Player', function($cookies, $window, Api)
 	self.subwin  = null;
 	self.setting = null;
 
+	// https://developers.google.com/youtube/player_parameters?playerVersion=HTML5&hl=ja
+	self.setting = {
+		controls  : null,// 0, 1 (動画内にコントロールを表示させる)
+		autoplay  : null,// 0, 1 (ページが読み込まれた時に動画を自動再生する)
+		disablekb : null,// 0, 1 (動画がフォーカスされた時にキーボードでの動画操作を不可にする)
+		loop      : null,// 0, 1 (動画のループ)
+	};
+
 	self.init = function()
 	{
 		var videoId = $cookies.get('videoId');
 
 		self.videoId = (videoId) ? videoId : null;
+
 		self.setting = {
-			controls  : 0,// 動画内にコントロールを表示させる
-			autoplay  : 1,// ページが読み込まれた時に動画を自動再生する
-			disablekb : 1,// 動画がフォーカスされた時にキーボードでの動画操作を不可にする
-			loop      : 1,// 動画のループ
+			controls  : 0,
+			autoplay  : 1,
+			disablekb : 1,
+			loop      : 1,
 		};
 
 		Api.emit('player:init');
