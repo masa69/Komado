@@ -2,7 +2,8 @@ app.factory('videoSearchList', function(Video, VideoHistory, User, Player)
 {
 	'use strict';
 
-	var lists  = null;
+	var lists = null;
+	var type  = 'search';
 
 	var init = function()
 	{
@@ -23,6 +24,7 @@ app.factory('videoSearchList', function(Video, VideoHistory, User, Player)
 	return {
 		init        : init,
 		lists       : lists,
+		type        : type,
 		refreshList : refreshList,
 		play        : play,
 	};

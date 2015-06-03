@@ -1,7 +1,6 @@
 <div class="video-list">
 	<div ng-repeat="videoList in self.lists" class="item">
 		<a href="" ng-click="self.play(videoList);">
-			<div class="playlist" ng-class="{isPlaylist: videoList.type == 'yt_playlist'}">playlist</div>
 			<div class="image">
 				<img ng-src="{{videoList.thumbnail}}" alt="{{videoList.title}}">
 			</div>

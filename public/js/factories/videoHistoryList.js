@@ -2,7 +2,8 @@ app.factory('videoHistoryList', function(VideoHistory, User, Player)
 {
 	'use strict';
 
-	var lists  = null;
+	var lists = null;
+	var type  = 'history';
 
 	var init = function()
 	{
@@ -37,6 +38,7 @@ app.factory('videoHistoryList', function(VideoHistory, User, Player)
 		init        : init,
 		initList    : initList,
 		lists       : lists,
+		type        : type,
 		refreshList : refreshList,
 		play        : play,
 		remove      : remove,
