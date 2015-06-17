@@ -8,7 +8,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 			controller: 'IndexController',
 			controllerAs: 'page',
 		})
-		.when('/player/youtube', {
+		.when('/player/:userId/:videoType', {
 			templateUrl: '/templates/views/player.html',
 			controller: 'PlayerController',
 			controllerAs: 'page',
