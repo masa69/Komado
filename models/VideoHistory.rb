@@ -92,6 +92,7 @@ class VideoHistory
 
 		if videos.count > @@MAX_ITEMS
 			i = 0
+			videos.reverse!
 			videos.each do |video|
 				if i >= @@MAX_ITEMS
 					delete(user, video['_id'].to_s)
