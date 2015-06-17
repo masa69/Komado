@@ -29,7 +29,6 @@ class VideoHistory
 	def getList(user)
 
 		res = []
-		i   = 0
 
 		if !user
 			@@failed.exception('user is required', 404)
@@ -39,8 +38,7 @@ class VideoHistory
 
 		if videos.count > 0
 			videos.each do |video|
-				res[i] = video
-				i += 1
+				res.push(video)
 			end
 		end
 
@@ -92,8 +90,12 @@ class VideoHistory
 
 		if videos.count > @@MAX_ITEMS
 			i = 0
-			videos.reverse!
+			videosTemp = []
 			videos.each do |video|
+				videosTemp.push(video)
+			end
+			videosTemp.reverse!
+			videosTemp.each do |video|
 				if i >= @@MAX_ITEMS
 					delete(user, video['_id'].to_s)
 				end
