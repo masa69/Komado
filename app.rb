@@ -34,7 +34,7 @@ end
 
 def initYoutube
 	returnToFront = ReturnToFront.new
-	youtube       = VideoHistory.new(returnToFront)
+	youtube       = YoutubeFinder.new(returnToFront)
 	return returnToFront, youtube
 end
 

@@ -9,12 +9,12 @@ app.factory('Video', function(Api)
 	self.find = function(params)
 	{
 		Api.get('/api/youtube/find', params,
-			function(data, status)
+			function(res, status)
 			{
-				self.lists = data;
+				self.lists = res.data;
 				Api.emit('video:find');
 			},
-			function(data, status)
+			function(res, status)
 			{
 				self.lists = null;
 				Api.emit('video:find:error');
