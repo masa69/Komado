@@ -19,7 +19,8 @@ class VideoHistory
 	end
 
 	def get(user)
-		@@collection.find(:user => user)
+		# @@collection.find(:user => user).sort(['addedTime', -1])
+		@@collection.find(:user => user).sort('addedTime')
 	end
 
 	def getIdByVideoId(user, videoId)
@@ -29,7 +30,6 @@ class VideoHistory
 	def getList(user)
 
 		res = []
-		i   = 0
 
 		if !user
 			@@failed.exception('user is required', 404)
@@ -39,8 +39,7 @@ class VideoHistory
 
 		if videos.count > 0
 			videos.each do |video|
-				res[i] = video
-				i += 1
+				res.push(video)
 			end
 		end
 
@@ -70,42 +69,43 @@ class VideoHistory
 			@@failed.exception('title is required', 404)
 		end
 
-		beforeVideos = getIdByVideoId(user, videoId)
-
-		if beforeVideos.count > 0
-			beforeVideos.each do |video|
-				delete(user, video['_id'].to_s)
-			end
-		end
-
 		videoData = {
 			'user'      => user,
 			'videoId'   => videoId,
 			'type'      => type,
 			'thumbnail' => thumbnail,
 			'title'     => title,
+			'addedTime' => Time.now.to_i.to_s
 		}
 
-		@@collection.insert(videoData)
+		videoIds = getIdByVideoId(user, videoId)
 
-		videos = get(user)
-
-		if videos.count > @@MAX_ITEMS
-			i = 0
-			videos.each do |video|
-				if i >= @@MAX_ITEMS
-					delete(user, video['_id'].to_s)
-				end
-				i += 1
+		if videoIds.count > 0
+			videoIds.each do |video|
+				delete(user, video['_id'].to_s)
 			end
 		end
+
+		videos  = get(user)
+		itemCnt = videos.count
+
+		if itemCnt >= @@MAX_ITEMS
+			videos.each do |video|
+				if itemCnt >= @@MAX_ITEMS
+					delete(user, video['_id'].to_s)
+				else
+					break
+				end
+				itemCnt -= 1
+			end
+		end
+
+		@@collection.insert(videoData)
 
 		return true
 	end
 
 	def delete(user, listId)
-
-		# listId = '1'
 
 		if !user
 			@@failed.exception('user is required', 404)
