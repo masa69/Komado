@@ -1,6 +1,6 @@
 app.controller('UserController', function(
 	$scope, $routeParams, $window,
-	User, Player, componentHeader, playerSwitch, videoSearchBar, videoSearchList, videoHistoryList)
+	User, PlayerOpener, componentHeader, playerOpenerMenu, videoSearchBar, videoSearchList, videoHistoryList)
 {
 	'use strict';
 
@@ -9,7 +9,7 @@ app.controller('UserController', function(
 	self.componentHeader = componentHeader;
 	self.componentFooter = null;
 
-	self.playerSwitch     = playerSwitch;
+	self.playerOpenerMenu = playerOpenerMenu;
 	self.videoSearchBar   = videoSearchBar;
 	self.videoSearchList  = videoSearchList;
 	self.videoHistoryList = videoHistoryList;
@@ -53,7 +53,7 @@ app.controller('UserController', function(
 			}
 		}
 		self.componentHeader.init();
-		self.playerSwitch.init();
+		self.playerOpenerMenu.init();
 		self.videoSearchBar.init();
 		self.videoSearchList.init();
 		self.videoHistoryList.init();
@@ -76,7 +76,7 @@ app.controller('UserController', function(
 
 	$scope.$root.$on('player:set:videoid', function()
 	{
-		Player.open();
+		PlayerOpener.open();
 	});
 
 	$scope.$root.$on('videohistory:getlist', function()

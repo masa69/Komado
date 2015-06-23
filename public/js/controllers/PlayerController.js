@@ -1,4 +1,4 @@
-app.controller('PlayerController', function($scope, User, Player, playerControl, videoSearchBar, videoSearchList, videoHistoryList)
+app.controller('PlayerController', function($scope, $routeParams, User, Player, playerControl, videoSearchBar, videoSearchList, videoHistoryList)
 {
 	'use strict';
 
@@ -14,6 +14,8 @@ app.controller('PlayerController', function($scope, User, Player, playerControl,
 		history  : false,
 		favorite : false,
 	};
+
+	self.isError = false;
 
 	self.init = function()
 	{
@@ -37,6 +39,14 @@ app.controller('PlayerController', function($scope, User, Player, playerControl,
 
 	$scope.$root.$on('user:init', function()
 	{
+		if ($routeParams.userId) {
+			if (!User.id() || $routeParams.userId !== User.id()) {
+				self.isError = true;
+				return;
+			}
+		} else {
+			self.isError = true;
+		}
 		Player.init();
 		self.videoSearchBar.init();
 		self.videoSearchList.init();
