@@ -1,20 +1,20 @@
-app.factory('playerSwitch', function(Player)
+app.factory('playerOpenerMenu', function(PlayerOpener, User)
 {
 	'use strict';
 
 	var init = function()
 	{
-
+		PlayerOpener.init(User.id());
 	};
 
 	var open = function()
 	{
-		Player.open();
+		PlayerOpener.open();
 	};
 
 	var close = function()
 	{
-		Player.close();
+		PlayerOpener.close();
 	};
 
 	return {

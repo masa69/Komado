@@ -23,6 +23,10 @@ get '/:controller/:action' do
 	erb :index
 end
 
+get '/:controller/:action/:param' do
+	erb :index
+end
+
 # API
 # ================
 

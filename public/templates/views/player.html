@@ -1,4 +1,4 @@
-<div class="main">
+<div ng-if="!page.isError" class="main">
 	<player-control set="page.playerControl"></player-control>
 	<video-search-bar set="page.videoSearchBar"></video-search-bar>
 	<div class="video-list-menu">
@@ -10,4 +10,7 @@
 	<div ng-if="page.list.history">
 		<video-list set="page.videoHistoryList"></video-list>
 	</div>
+</div>
+<div ng-if="page.isError" class="main">
+	Sorry, please try again.
 </div>
