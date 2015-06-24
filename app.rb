@@ -23,7 +23,7 @@ get '/:controller/:action' do
 	erb :index
 end
 
-get '/:controller/:action/:param' do
+get '/player/:user/:type' do
 	erb :index
 end
 
