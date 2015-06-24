@@ -1,0 +1,10 @@
+.user-entrance {
+	max-width: 350px;
+	margin: 0 auto;
+	.box {
+		background: $color-white;
+		padding: 20px;
+		border: 4px $color-lightgray solid;
+		border-radius: 15px;
+	}
+}

@@ -8,3 +8,14 @@ body {
 	font-size: $font-size-default;
 	line-height: $line-height;
 }
+
+input,
+button {
+	&:focus {
+		outline: 0;
+	}
+}
+
+a, button {
+	cursor: pointer;
+}

@@ -8,6 +8,12 @@
 	background: $color-deepdarkgray;
 	z-index: 1000;
 	@include outer-container;
+	a {
+		color: $color-white;
+		&:hover {
+			color: $color-lightgray;
+		}
+	}
 	.left-contents {
 		@include span-columns(6);
 		@include media($mobile) {
@@ -33,11 +39,19 @@
 .main.page-index,
 .main.page-user {
 	padding-top: 50px;
-	max-width: 700px;
 	margin: 0 auto;
 }
 
+.main.page-user {
+	max-width: 700px;
+}
+
 .footer {
-	padding-top: 20px;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	min-width: 100%;
+	background: rgba(255,255,255,.7);
 	text-align: center;
+	padding: 5px;
 }

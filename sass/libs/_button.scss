@@ -1,0 +1,49 @@
+.btn {
+	display: inline-block;
+	a, button {
+		display: block;
+		font-weight: normal;
+		border-radius: 4px;
+	}
+}
+
+.btn.primary {
+	a, button {
+		background: $color-btn-primary;
+		color: $color-white;
+		&:hover {
+			background: $color-btn-primary-hover;
+			color: $color-white;
+		}
+	}
+}
+.btn.default {
+	a, button {
+		background: $color-gray;
+		color: $color-white;
+		&:hover {
+			background: $color-gray-hover;
+			color: $color-white;
+		}
+	}
+}
+
+.btn.large {
+	a, button {
+		font-size: $font-size-large;
+		line-height: $line-height;
+		padding: 15px 30px;
+	}
+}
+
+.btn.medium {
+	a, button {
+		
+	}
+}
+
+.btn.small {
+	a, button {
+		
+	}
+}

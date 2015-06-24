@@ -1,6 +1,19 @@
-<form ng-submit="self.signin()">
-	Your ID
-	<input type="text" ng-model="self.id" placeholder="a-z, A-Z, Underscore ( _ )" required>
-	<button type="submit"><i class="fa fa-user"></i>Create Account / Sign in</button>
-	<div class="btn default medium"><a href="" ng-click="self.signinByGuest()"><i class="fa fa-user"></i>Skip</a></div>
-</form>
+<div class="user-entrance">
+	<form ng-submit="self.signin()">
+		<div class="box margin-bottom30">
+			<!-- ( A-z || _ ) &amp;&amp; &lt;= 20 -->
+			<input type="text" ng-model="self.id" placeholder="Your ID (No Password)" required>
+			<div class="padding-top10 text-center">
+				<div class="btn primary large">
+					<button type="submit">Sign in<i class="fa fa-angle-right right"></i></button>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="text-center">
+			<div class="btn default large">
+				<a href="" ng-click="self.signinByGuest()">Sign in by guest<i class="fa fa-angle-right right"></i></a>
+			</div>
+		</div>
+	</form>
+</div>
