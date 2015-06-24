@@ -1,11 +1,10 @@
-app.factory('Player', function($cookies, $window, Api)
+app.factory('Player', function($cookies, Api)
 {
 	'use strict';
 
 	var self = this;
 
 	self.videoId = null;
-	self.subwin  = null;
 	self.setting = null;
 
 	// https://developers.google.com/youtube/player_parameters?playerVersion=HTML5&hl=ja
@@ -32,20 +31,6 @@ app.factory('Player', function($cookies, $window, Api)
 		Api.emit('player:init');
 	};
 
-	self.open = function()
-	{
-		self.subwin = $window.open('/player/youtube', 'komado', 'width=150,height=400,scrollbars=yes');
-	};
-
-	self.close = function()
-	{
-		if (!self.subwin || self.subwin.closed) {
-			return;
-		}
-		self.subwin.close();
-		$window.alert('thanks :)');
-	};
-
 	self.setVideoId = function(id)
 	{
 		if (!id) {
@@ -70,7 +55,7 @@ app.factory('Player', function($cookies, $window, Api)
 	};
 
 	return {
-		init: function()
+		init: function(userId)
 		{
 			self.init();
 		},
@@ -89,14 +74,6 @@ app.factory('Player', function($cookies, $window, Api)
 		updateSetting: function(key, val)
 		{
 			self.updateSetting(key, val);
-		},
-		open: function()
-		{
-			self.open();
-		},
-		close: function()
-		{
-			self.close();
 		}
 	};
 });
