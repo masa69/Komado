@@ -1,14 +1,36 @@
 .header {
 	.logo {
-		color: $color-white;
+		font-family: 'AppleSDGothicNeo-Thin', sans-serif;
+		font-weight: bold;
 		padding: 9px 0 0 8px;
 	}
 }
 .main {
 	.logo {
 		text-align: center;
-		font-size: $font-size-xxlarge + 30;
+		font-size: $font-size-logo;
+		line-height: $line-height - 40;
+		font-weight: normal;
+		font-family: 'AppleSDGothicNeo-Thin', sans-serif;
+		padding: 30px 0 0;
+		margin: 0;
+	}
+	.logo-jp {
+		text-align: center;
+		font-size: $font-size-logo-jp;
 		line-height: $line-height;
 		font-weight: normal;
+		font-family: 'AppleSDGothicNeo-Thin', sans-serif;
+		padding: 0 0 35px;
+		margin: 0;
+	}
+	.logo-description {
+		text-align: center;
+		font-size: $font-size-logo-description;
+		line-height: $line-height;
+		font-weight: normal;
+		font-family: 'AppleSDGothicNeo-Thin', sans-serif;
+		padding: 0 0 30px;
+		margin: 0;
 	}
 }
