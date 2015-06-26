@@ -12,7 +12,8 @@ app.factory('PlayerOpener', function($window)
 		if (!self.userId) {
 			return;
 		}
-		self.subwin = $window.open('/player/' + self.userId + '/youtube', 'komado', 'width=150,height=400,scrollbars=yes');
+		// console.log(screen);
+		self.subwin = $window.open('/player/' + self.userId + '/youtube', 'komado', 'width=150,height=' + screen.availHeight + ',top=0,left=0,scrollbars=yes,menubar=no,toolbar=no,location=no,directories=no,status=no');
 	};
 
 	self.close = function()
