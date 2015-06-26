@@ -1,6 +1,89 @@
 .user-entrance {
 	max-width: 350px;
+	// todo: -> margin: 0 auto 50px;
 	margin: 0 auto;
+	label.id {
+		position: relative;
+	}
+	.form.ng-invalid button {
+		opacity: .4;
+	}
+	.icon {
+		position: absolute;
+		top: 5px;
+		right: 0;
+	}
+	.icon.valid {
+		color: $color-success;
+	}
+	.icon.invalid {
+		color: $color-danger;
+	}
+	.ng-messages {
+		@include transition(all 0.1s ease-in-out);
+		position: absolute;
+		top: -45px;
+		left: 0;
+		div {
+			position: relative;
+			background: $color-white;
+			font-weight: normal;
+			border-radius: 4px;
+			padding: 5px;
+			&:after, &:before {
+				position: absolute;
+				top: 100%;
+				left: 20%;
+				content: " ";
+				height: 0;
+				width: 0;
+				pointer-events: none;
+				border: solid transparent;
+			}
+			&:after {
+				border-color: rgba(0,0,0,0);
+				margin-left: -8px;
+			}
+			&:before {
+				border-color: rgba(0,0,0,0);
+				margin-left: -11px;
+			}
+		}
+		.warning {
+			color: $color-warning;
+			border: 2px $color-warning solid;
+			&:after {
+				border-top-color: $color-white;
+				border-width: 8px;
+			}
+			&:before {
+				border-top-color: $color-warning;
+				border-width: 11px;
+			}
+		}
+		.danger {
+			color: $color-danger;
+			border: 2px $color-danger solid;
+			&:after {
+				border-top-color: $color-white;
+				border-width: 8px;
+			}
+			&:before {
+				border-top-color: $color-danger;
+				border-width: 11px;
+			}
+		}
+	}
+	.ng-messages.ng-active {
+		// messages are visible
+		top: -37px;
+		opacity: 1;
+	}
+	.ng-messages.ng-inactive {
+		// messages are hidden
+		top: -45px;
+		opacity: 0;
+	}
 	.box {
 		background: $color-white;
 		padding: 20px;
