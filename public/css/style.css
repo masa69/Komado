@@ -423,7 +423,7 @@ i.fa.right {
 
 .user-entrance {
   max-width: 350px;
-  margin: 0 auto; }
+  margin: 0 auto 50px; }
   .user-entrance label.id {
     position: relative; }
   .user-entrance .form.ng-invalid button {
@@ -564,6 +564,6 @@ i.fa.right {
   left: 0;
   background: none;
   color: #aaa;
-  padding: 7px 0 7px 9px; }
+  padding: 9px 0 7px 9px; }
 
 /*# sourceMappingURL=style.css.map */
