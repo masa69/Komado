@@ -1,4 +1,4 @@
-var app = angular.module('komado', ['ngSanitize', 'ngAnimate', 'ngRoute', 'ngCookies', 'angularMoment', 'youtube-embed']);
+var app = angular.module('komado', ['ngSanitize', 'ngAnimate', 'ngRoute', 'ngCookies', 'ngMessages', 'angularMoment', 'youtube-embed']);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider)
 {

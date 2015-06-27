@@ -424,6 +424,70 @@ i.fa.right {
 .user-entrance {
   max-width: 350px;
   margin: 0 auto; }
+  .user-entrance label.id {
+    position: relative; }
+  .user-entrance .form.ng-invalid button {
+    opacity: .4; }
+  .user-entrance .icon {
+    position: absolute;
+    top: 5px;
+    right: 0; }
+  .user-entrance .icon.valid {
+    color: #4AC198; }
+  .user-entrance .icon.invalid {
+    color: #f66; }
+  .user-entrance .ng-messages {
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    position: absolute;
+    top: -45px;
+    left: 0; }
+    .user-entrance .ng-messages div {
+      position: relative;
+      background: #fff;
+      font-weight: normal;
+      border-radius: 4px;
+      padding: 5px; }
+      .user-entrance .ng-messages div:after, .user-entrance .ng-messages div:before {
+        position: absolute;
+        top: 100%;
+        left: 20%;
+        content: " ";
+        height: 0;
+        width: 0;
+        pointer-events: none;
+        border: solid transparent; }
+      .user-entrance .ng-messages div:after {
+        border-color: transparent;
+        margin-left: -8px; }
+      .user-entrance .ng-messages div:before {
+        border-color: transparent;
+        margin-left: -11px; }
+    .user-entrance .ng-messages .warning {
+      color: #477dca;
+      border: 2px #477dca solid; }
+      .user-entrance .ng-messages .warning:after {
+        border-top-color: #fff;
+        border-width: 8px; }
+      .user-entrance .ng-messages .warning:before {
+        border-top-color: #477dca;
+        border-width: 11px; }
+    .user-entrance .ng-messages .danger {
+      color: #f66;
+      border: 2px #f66 solid; }
+      .user-entrance .ng-messages .danger:after {
+        border-top-color: #fff;
+        border-width: 8px; }
+      .user-entrance .ng-messages .danger:before {
+        border-top-color: #f66;
+        border-width: 11px; }
+  .user-entrance .ng-messages.ng-active {
+    top: -37px;
+    opacity: 1; }
+  .user-entrance .ng-messages.ng-inactive {
+    top: -45px;
+    opacity: 0; }
   .user-entrance .box {
     background: #fff;
     padding: 20px;

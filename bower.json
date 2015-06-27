@@ -21,6 +21,7 @@
     "angular-cookies": "~1.4.x",
     "lodash": "~3.6.0",
     "angular-youtube-mb": "~1.0.0",
-    "angular-moment": "~0.10.1"
+    "angular-moment": "~0.10.1",
+    "angular-messages": "~1.4.1"
   }
 }
