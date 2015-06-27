@@ -12,6 +12,10 @@ app.factory('User', function($rootScope, $cookies, Api)
 
 		self.id = (id) ? id : null;
 
+		if (self.id) {
+			self.setId(self.id);
+		}
+
 		Api.emit('user:init');
 	};
 
@@ -21,11 +25,8 @@ app.factory('User', function($rootScope, $cookies, Api)
 			Api.emit('user:signin:error');
 			return;
 		}
-
-		$cookies.put('userId', id, {path: '/', expires: moment().add(7, 'day').format('X')});
-
+		self.setId(id);
 		self.id = id;
-
 		Api.emit('user:signin');
 	};
 
@@ -34,8 +35,12 @@ app.factory('User', function($rootScope, $cookies, Api)
 		if (id === null || id === undefined) {
 			return false;
 		}
-
 		return true;
+	};
+
+	self.setId = function(id)
+	{
+		$cookies.put('userId', id, {path: '/', expires: moment().add(7, 'day').format('X')});
 	};
 
 	return {
