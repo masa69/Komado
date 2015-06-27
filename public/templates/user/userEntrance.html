@@ -2,7 +2,7 @@
 	<form ng-submit="self.signin()" name="signin" class="form">
 		<div class="box margin-bottom20">
 			<label class="id">
-				<input ng-focus="signinForm.id = true" type="text" ng-model="self.id" name="id" placeholder="Your ID (No Password)" required ng-maxlength="10" ng-pattern="self.validate.id">
+				<input ng-keypress="signinForm.id = true" type="text" ng-model="self.id" name="id" placeholder="Your ID (No Password)" required ng-maxlength="10" ng-pattern="self.validate.id">
 				<div class="icon valid" ng-if="signin.id.$valid"><i class="fa fa-check"></i></div>
 				<div class="icon invalid" ng-if="signinForm.id && signin.id.$invalid"><i class="fa fa-remove"></i></div>
 				<div ng-messages="signin.id.$error" class="ng-messages">
