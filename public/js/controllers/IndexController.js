@@ -29,7 +29,7 @@ app.controller('IndexController', function($scope, $window, User, componentHeade
 
 	$scope.$root.$on('user:signin:error', function()
 	{
-		// $window.location.href = '/' + User.id();
+
 	});
 
 	self.init();
