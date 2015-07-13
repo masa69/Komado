@@ -1,4 +1,4 @@
-app.factory('User', function($rootScope, $cookies, Api)
+app.factory('User', function($cookies, Api)
 {
 	'use strict';
 

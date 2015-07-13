@@ -17,8 +17,10 @@ module.exports = function(config) {
     files: [
         'public/js/bower_components/angular/angular.min.js',
         'public/js/bower_components/angular-*/*.min.js',
+        'public/js/bower_components/angular-youtube-mb/dist/angular-youtube-embed.min.js',
+        'public/js/bower_components/lodash/lodash.min.js',
+        'public/js/bower_components/moment/min/moment.min.js',
         'public/js/bower_components/angular-mocks/angular-mocks.js',
-        // 'public/js/bower_components/jquery/dist/jquery.min.js',
         'public/js/router/app.js',
         'public/js/controllers/*.js',
         'public/js/models/*.js',
