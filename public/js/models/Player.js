@@ -55,7 +55,7 @@ app.factory('Player', function($cookies, Api)
 	};
 
 	return {
-		init: function(userId)
+		init: function()
 		{
 			self.init();
 		},
