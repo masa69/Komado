@@ -5,7 +5,7 @@ describe('[Model] User', function()
 	beforeEach(module('komado'));
 
 	var User;
-	var $rootScope, $cookies, Api;
+	var $cookies, Api;
 
 	beforeEach(inject(
 		function($injector)
@@ -26,28 +26,41 @@ describe('[Model] User', function()
 	/**
 	 * User.id() は self.id を返す
 	 */
-	it('init()', inject(
+	it('init() error', inject(
 		function()
 		{
-			// self.idの代入
+			expect(User.id()).toEqual(null);
 			// $cookie.get('userId') で取得したものを self.id に代入している
 			$cookies.remove('userId');
 			User.init();
 
 			expect(User.id()).toEqual(null);
-
-
-			$cookies.put('userId', 'test');
-			User.init();
-
-			expect(User.id()).toEqual('test');
 		}
 	));
 
-	it('signin(id)', inject(
+	it('init() success', inject(
 		function()
 		{
-			// self.idの代入
+			expect(User.id()).toEqual(null);
+
+			$cookies.remove('userId');
+			$cookies.put('userId', 'testUserId');
+			User.init();
+
+			expect(User.id()).toEqual('testUserId');
+		}
+	));
+
+
+
+	it('signin(id) error', inject(
+		function()
+		{
+			$cookies.remove('userId');
+			User.init();
+
+			expect(User.id()).toEqual(null);
+
 			User.signin(null);
 			expect(User.id()).toEqual(null);
 
@@ -56,9 +69,19 @@ describe('[Model] User', function()
 
 			User.signin('');
 			expect(User.id()).toEqual(null);
+		}
+	));
 
-			User.signin('test');
-			expect(User.id()).toEqual('test');
+	it('signin(id) success', inject(
+		function()
+		{
+			$cookies.remove('userId');
+			User.init();
+
+			expect(User.id()).toEqual(null);
+
+			User.signin('testUserId');
+			expect(User.id()).toEqual('testUserId');
 		}
 	));
 });
