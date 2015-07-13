@@ -26,9 +26,10 @@ describe('[Model] User', function()
 	/**
 	 * User.id() は self.id を返す
 	 */
-	it('init() -> self.idの代入', inject(
+	it('init()', inject(
 		function()
 		{
+			// self.idの代入
 			// $cookie.get('userId') で取得したものを self.id に代入している
 			$cookies.remove('userId');
 			User.init();
@@ -43,21 +44,20 @@ describe('[Model] User', function()
 		}
 	));
 
-	it('signin(id) -> self.idの代入', inject(
+	it('signin(id)', inject(
 		function()
 		{
+			// self.idの代入
 			User.signin(null);
-
 			expect(User.id()).toEqual(null);
 
+			User.signin();
+			expect(User.id()).toEqual(null);
 
 			User.signin('');
-
 			expect(User.id()).toEqual(null);
 
-
 			User.signin('test');
-
 			expect(User.id()).toEqual('test');
 		}
 	));
