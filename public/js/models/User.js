@@ -32,7 +32,7 @@ app.factory('User', function($cookies, Api)
 
 	self.isId = function(id)
 	{
-		if (id === null || id === undefined) {
+		if (id === null || id === undefined || id === '') {
 			return false;
 		}
 		return true;
