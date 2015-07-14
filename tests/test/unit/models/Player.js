@@ -6,6 +6,7 @@ describe('[Model] Player', function()
 
 	var Player;
 	var $cookies, Api;
+	var $rootScope;
 
 	beforeEach(inject(
 		function($injector)
@@ -14,6 +15,8 @@ describe('[Model] Player', function()
 
 			$cookies = $injector.get('$cookies');
 			Api      = $injector.get('Api');
+
+			$rootScope = $injector.get('$rootScope');
 		}
 	));
 
@@ -30,6 +33,13 @@ describe('[Model] Player', function()
 		function()
 		{
 			var setting = Player.setting();
+
+			var emittedPlayerInit = false;
+
+			$rootScope.$on('player:init', function()
+			{
+				emittedPlayerInit = true;
+			});
 
 			expect(Player.videoId()).toEqual(null);
 
@@ -49,6 +59,8 @@ describe('[Model] Player', function()
 			expect(setting.autoplay).toEqual(1);
 			expect(setting.disablekb).toEqual(1);
 			expect(setting.loop).toEqual(1);
+
+			expect(emittedPlayerInit).toEqual(true);
 		}
 	));
 
@@ -56,6 +68,13 @@ describe('[Model] Player', function()
 		function()
 		{
 			var setting = Player.setting();
+
+			var emittedPlayerInit = false;
+
+			$rootScope.$on('player:init', function()
+			{
+				emittedPlayerInit = true;
+			});
 
 			expect(Player.videoId()).toEqual(null);
 
@@ -76,6 +95,8 @@ describe('[Model] Player', function()
 			expect(setting.autoplay).toEqual(1);
 			expect(setting.disablekb).toEqual(1);
 			expect(setting.loop).toEqual(1);
+
+			expect(emittedPlayerInit).toEqual(true);
 		}
 	));
 
@@ -84,6 +105,13 @@ describe('[Model] Player', function()
 	it('setVideoId(), videoId() error', inject(
 		function()
 		{
+			var emittedPlayerSetVideoId = false;
+
+			$rootScope.$on('player:set:videoid', function()
+			{
+				emittedPlayerSetVideoId = true;
+			});
+
 			expect(Player.videoId()).toEqual(null);
 
 			$cookies.remove('videoId');
@@ -96,12 +124,21 @@ describe('[Model] Player', function()
 
 			Player.setVideoId('');
 			expect(Player.videoId()).toEqual(null);
+
+			expect(emittedPlayerSetVideoId).toEqual(false);
 		}
 	));
 
 	it('setVideoId(), videoId() success', inject(
 		function()
 		{
+			var emittedPlayerSetVideoId = false;
+
+			$rootScope.$on('player:set:videoid', function()
+			{
+				emittedPlayerSetVideoId = true;
+			});
+
 			expect(Player.videoId()).toEqual(null);
 
 			$cookies.remove('videoId');
@@ -111,6 +148,8 @@ describe('[Model] Player', function()
 
 			Player.setVideoId('myVideoId');
 			expect(Player.videoId()).toEqual('myVideoId');
+
+			expect(emittedPlayerSetVideoId).toEqual(true);
 		}
 	));
 
@@ -122,6 +161,13 @@ describe('[Model] Player', function()
 			Player.init();
 
 			var setting = Player.setting();
+
+			var emittedPlayerSetSetting = false;
+
+			$rootScope.$on('player:set:setting', function()
+			{
+				emittedPlayerSetSetting = true;
+			});
 
 			expect(setting.controls).toEqual(0);
 			expect(setting.autoplay).toEqual(1);
@@ -139,6 +185,8 @@ describe('[Model] Player', function()
 
 			Player.updateSetting('loop', false);
 			expect(setting.loop).not.toEqual(false);
+
+			expect(emittedPlayerSetSetting).toEqual(false);
 		}
 	));
 
@@ -149,6 +197,13 @@ describe('[Model] Player', function()
 
 			var setting = Player.setting();
 
+			var emittedPlayerSetSetting = false;
+
+			$rootScope.$on('player:set:setting', function()
+			{
+				emittedPlayerSetSetting = true;
+			});
+
 			expect(setting.controls).toEqual(0);
 			expect(setting.autoplay).toEqual(1);
 			expect(setting.disablekb).toEqual(1);
@@ -157,14 +212,26 @@ describe('[Model] Player', function()
 			Player.updateSetting('controls', 1);
 			expect(setting.controls).toEqual(1);
 
+			expect(emittedPlayerSetSetting).toEqual(true);
+			emittedPlayerSetSetting = false;
+
 			Player.updateSetting('autoplay', 0);
 			expect(setting.autoplay).toEqual(0);
+
+			expect(emittedPlayerSetSetting).toEqual(true);
+			emittedPlayerSetSetting = false;
 
 			Player.updateSetting('disablekb', 1);
 			expect(setting.disablekb).toEqual(1);
 
+			expect(emittedPlayerSetSetting).toEqual(true);
+			emittedPlayerSetSetting = false;
+
 			Player.updateSetting('loop', 0);
 			expect(setting.loop).toEqual(0);
+
+			expect(emittedPlayerSetSetting).toEqual(true);
+			emittedPlayerSetSetting = false;
 		}
 	));
 });
