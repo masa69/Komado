@@ -23,6 +23,7 @@ module.exports = function(config) {
         'public/js/bower_components/angular-mocks/angular-mocks.js',
         'public/js/router/app.js',
         'public/js/controllers/*.js',
+        'public/js/modules/*.js',
         'public/js/models/*.js',
         'tests/test/unit/*/*.js'
     ],

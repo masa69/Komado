@@ -5,14 +5,11 @@ describe('[Model] PlayerOpener', function()
 	beforeEach(module('komado'));
 
 	var PlayerOpener;
-	var $window;
 
 	beforeEach(inject(
 		function($injector)
 		{
 			PlayerOpener = $injector.get('PlayerOpener');
-
-			$window = $injector.get('$window');
 		}
 	));
 
