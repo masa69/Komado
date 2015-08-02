@@ -2,15 +2,19 @@ app.factory('componentHeader', function(User)
 {
 	'use strict';
 
-	var userId = null;
+	var self = this;
 
-	var init = function()
+	self.data = {
+		userId : null,
+	};
+
+	self.init = function()
 	{
-		this.userId = User.id();
+		self.data.userId = User.id();
 	};
 
 	return {
-		init   : init,
-		userId : userId,
+		init : self.init,
+		data : self.data,
 	};
 });
