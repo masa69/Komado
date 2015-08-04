@@ -138,7 +138,7 @@ app.controller('PlayerController', function($scope, $routeParams, User, Player, 
 	{
 		self.playerControl.setPlayingStatus('ended');
 
-		if (self.playerControl.setting.loop === 1) {
+		if (self.playerControl.data.setting.loop === 1) {
 			player.playVideo();
 		}
 	});
