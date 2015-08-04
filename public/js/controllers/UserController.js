@@ -1,6 +1,6 @@
 app.controller('UserController', function(
 	$scope, $routeParams, $window,
-	User, PlayerOpener, componentHeader, playerOpenerMenu, videoSearchBar, videoSearchList, videoHistoryList)
+	User, componentHeader, playerOpenerMenu, videoSearchBar, videoSearchList, videoHistoryList)
 {
 	'use strict';
 
@@ -42,21 +42,23 @@ app.controller('UserController', function(
 
 	$scope.$root.$on('user:init', function()
 	{
+		var userId = User.id();
+
 		if ($routeParams.userId) {
-			if (!User.id()) {
+			if (!userId) {
 				$window.location.href = '/';
 				return;
 			}
-			if ($routeParams.userId !== User.id()) {
-				$window.location.href = '/' + User.id();
+			if ($routeParams.userId !== userId) {
+				$window.location.href = '/' + userId;
 				return;
 			}
 		}
-		self.componentHeader.init();
-		self.playerOpenerMenu.init();
+		self.componentHeader.init(userId);
+		self.playerOpenerMenu.init(userId);
 		self.videoSearchBar.init();
-		self.videoSearchList.init();
-		self.videoHistoryList.init();
+		self.videoSearchList.init(userId);
+		self.videoHistoryList.init(userId);
 	});
 
 
@@ -76,7 +78,7 @@ app.controller('UserController', function(
 
 	$scope.$root.$on('player:set:videoid', function()
 	{
-		PlayerOpener.open();
+		self.playerOpenerMenu.open();
 	});
 
 	$scope.$root.$on('videohistory:getlist', function()

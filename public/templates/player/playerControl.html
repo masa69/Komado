@@ -1,14 +1,14 @@
 <div class="yt-player yt-player-16by9">
-	<youtube-video class="yt-player-item" player="self.youtube" video-id="self.videoId" player-vars="self.setting"></youtube-video>
+	<youtube-video class="yt-player-item" player="self.data.youtube" video-id="self.data.videoId" player-vars="self.data.setting"></youtube-video>
 </div>
 <div class="player-control text-center">
 	<div class="switch loop">
-		<a ng-if="self.setting.loop == 1" href="" ng-click="self.updateSetting('loop', 0)"><i class="fa fa-repeat"></i>on</a>
-		<a ng-if="self.setting.loop == 0" href="" ng-click="self.updateSetting('loop', 1)"><i class="fa fa-repeat"></i>off</a>
+		<a ng-if="self.data.setting.loop == 1" href="" ng-click="self.updateSetting('loop', 0)"><i class="fa fa-repeat"></i>on</a>
+		<a ng-if="self.data.setting.loop == 0" href="" ng-click="self.updateSetting('loop', 1)"><i class="fa fa-repeat"></i>off</a>
 	</div>
 	<hr>
 	<div class="switch playing">
-		<a ng-if="!self.playing" href="" ng-click="self.youtube.playVideo()"><i class="fa fa-play"></i></a>
-		<a ng-if="self.playing" href="" ng-click="self.youtube.pauseVideo()"><i class="fa fa-pause"></i></a>
+		<a ng-if="!self.data.playing" href="" ng-click="self.data.youtube.playVideo()"><i class="fa fa-play"></i></a>
+		<a ng-if="self.data.playing" href="" ng-click="self.data.youtube.pauseVideo()"><i class="fa fa-pause"></i></a>
 	</div>
 </div>

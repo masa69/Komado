@@ -1,32 +1,36 @@
-app.factory('videoHistoryList', function(VideoHistory, User, Player)
+app.factory('videoHistoryList', function(VideoHistory, Player)
 {
 	'use strict';
 
-	var lists = null;
-	var type  = 'history';
+	var self = this;
 
-	var init = function()
-	{
-		VideoHistory.init(User.id());
+	self.data = {
+		lists : null,
+		type  : 'history',
 	};
 
-	var initList = function()
+	self.init = function(userId)
+	{
+		VideoHistory.init(userId);
+	};
+
+	self.initList = function()
 	{
 		VideoHistory.initList();
 	};
 
-	var refreshList = function()
+	self.refreshList = function()
 	{
-		this.lists = VideoHistory.lists();
+		self.data.lists = VideoHistory.lists();
 	};
 
-	var play = function(video)
+	self.play = function(video)
 	{
 		Player.setVideoId(video.videoId);
 		VideoHistory.add(video);
 	};
 
-	var remove = function(id)
+	self.remove = function(id)
 	{
 		var params = {
 			listId : id,
@@ -35,12 +39,11 @@ app.factory('videoHistoryList', function(VideoHistory, User, Player)
 	};
 
 	return {
-		init        : init,
-		initList    : initList,
-		lists       : lists,
-		type        : type,
-		refreshList : refreshList,
-		play        : play,
-		remove      : remove,
+		init        : self.init,
+		initList    : self.initList,
+		data        : self.data,
+		refreshList : self.refreshList,
+		play        : self.play,
+		remove      : self.remove,
 	};
 });

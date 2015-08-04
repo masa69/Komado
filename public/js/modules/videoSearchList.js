@@ -1,31 +1,34 @@
-app.factory('videoSearchList', function(Video, VideoHistory, User, Player)
+app.factory('videoSearchList', function(Video, VideoHistory, Player)
 {
 	'use strict';
 
-	var lists = null;
-	var type  = 'search';
+	var self = this;
 
-	var init = function()
-	{
-		VideoHistory.init(User.id());
+	self.data = {
+		lists : null,
+		type  : 'search',
 	};
 
-	var refreshList = function()
+	self.init = function(userId)
 	{
-		this.lists = Video.lists();
+		VideoHistory.init(userId);
 	};
 
-	var play = function(video)
+	self.refreshList = function()
+	{
+		self.data.lists = Video.lists();
+	};
+
+	self.play = function(video)
 	{
 		Player.setVideoId(video.videoId);
 		VideoHistory.add(video);
 	};
 
 	return {
-		init        : init,
-		lists       : lists,
-		type        : type,
-		refreshList : refreshList,
-		play        : play,
+		init        : self.init,
+		data        : self.data,
+		refreshList : self.refreshList,
+		play        : self.play,
 	};
 });
