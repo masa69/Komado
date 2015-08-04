@@ -2,24 +2,26 @@ app.factory('playerOpenerMenu', function(PlayerOpener, User)
 {
 	'use strict';
 
-	var init = function()
+	var self = this;
+
+	self.init = function(userId)
 	{
-		PlayerOpener.init(User.id());
+		PlayerOpener.init(userId);
 	};
 
-	var open = function()
+	self.open = function()
 	{
 		PlayerOpener.open();
 	};
 
-	var close = function()
+	self.close = function()
 	{
 		PlayerOpener.close();
 	};
 
 	return {
-		init  : init,
-		open  : open,
-		close : close,
+		init  : self.init,
+		open  : self.open,
+		close : self.close,
 	};
 });

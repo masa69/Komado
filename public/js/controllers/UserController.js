@@ -42,18 +42,20 @@ app.controller('UserController', function(
 
 	$scope.$root.$on('user:init', function()
 	{
+		var userId = User.id();
+
 		if ($routeParams.userId) {
-			if (!User.id()) {
+			if (!userId) {
 				$window.location.href = '/';
 				return;
 			}
-			if ($routeParams.userId !== User.id()) {
-				$window.location.href = '/' + User.id();
+			if ($routeParams.userId !== userId) {
+				$window.location.href = '/' + userId;
 				return;
 			}
 		}
 		self.componentHeader.init();
-		self.playerOpenerMenu.init();
+		self.playerOpenerMenu.init(userId);
 		self.videoSearchBar.init();
 		self.videoSearchList.init();
 		self.videoHistoryList.init();
