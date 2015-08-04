@@ -12,10 +12,9 @@ app.factory('userEntrance', function(User)
 		}
 	};
 
-	self.init = function()
+	self.init = function(userId)
 	{
-		var id = User.id();
-		self.data.id = (id !== self.data.guestId) ? id : null;
+		self.data.id = (userId !== self.data.guestId) ? userId : null;
 	};
 
 	self.signin = function()

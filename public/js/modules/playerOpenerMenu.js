@@ -1,4 +1,4 @@
-app.factory('playerOpenerMenu', function(PlayerOpener, User)
+app.factory('playerOpenerMenu', function(PlayerOpener)
 {
 	'use strict';
 

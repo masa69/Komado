@@ -1,6 +1,6 @@
 app.controller('UserController', function(
 	$scope, $routeParams, $window,
-	User, PlayerOpener, componentHeader, playerOpenerMenu, videoSearchBar, videoSearchList, videoHistoryList)
+	User, componentHeader, playerOpenerMenu, videoSearchBar, videoSearchList, videoHistoryList)
 {
 	'use strict';
 
@@ -54,7 +54,7 @@ app.controller('UserController', function(
 				return;
 			}
 		}
-		self.componentHeader.init();
+		self.componentHeader.init(userId);
 		self.playerOpenerMenu.init(userId);
 		self.videoSearchBar.init();
 		self.videoSearchList.init();
@@ -78,7 +78,7 @@ app.controller('UserController', function(
 
 	$scope.$root.$on('player:set:videoid', function()
 	{
-		PlayerOpener.open();
+		self.playerOpenerMenu.open();
 	});
 
 	$scope.$root.$on('videohistory:getlist', function()

@@ -18,8 +18,9 @@ app.controller('IndexController', function($scope, $window, User, componentHeade
 
 	$scope.$root.$on('user:init', function()
 	{
-		self.componentHeader.init();
-		self.userEntrance.init();
+		var userId = User.id();
+		self.componentHeader.init(userId);
+		self.userEntrance.init(userId);
 	});
 
 	$scope.$root.$on('user:signin', function()

@@ -1,4 +1,4 @@
-app.factory('componentHeader', function(User)
+app.factory('componentHeader', function()
 {
 	'use strict';
 
@@ -8,9 +8,9 @@ app.factory('componentHeader', function(User)
 		userId : null,
 	};
 
-	self.init = function()
+	self.init = function(userId)
 	{
-		self.data.userId = User.id();
+		self.data.userId = userId;
 	};
 
 	return {
