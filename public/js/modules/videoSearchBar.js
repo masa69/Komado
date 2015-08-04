@@ -2,23 +2,27 @@ app.factory('videoSearchBar', function(Video)
 {
 	'use strict';
 
-	var sendParams = {
-		kw : null,
+	var self = this;
+
+	self.sendParams = {
+		find : {
+			kw : null,
+		}
 	};
 
-	var init = function()
+	self.init = function()
 	{
 
 	};
 
-	var find = function()
+	self.find = function()
 	{
-		Video.find(this.sendParams);
+		Video.find(self.sendParams.find);
 	};
 
 	return {
-		init       : init,
-		sendParams : sendParams,
-		find       : find,
+		init       : self.init,
+		sendParams : self.sendParams,
+		find       : self.find,
 	};
 });
