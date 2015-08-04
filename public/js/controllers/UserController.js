@@ -57,8 +57,8 @@ app.controller('UserController', function(
 		self.componentHeader.init(userId);
 		self.playerOpenerMenu.init(userId);
 		self.videoSearchBar.init();
-		self.videoSearchList.init();
-		self.videoHistoryList.init();
+		self.videoSearchList.init(userId);
+		self.videoHistoryList.init(userId);
 	});
 
 

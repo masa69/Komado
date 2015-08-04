@@ -39,8 +39,10 @@ app.controller('PlayerController', function($scope, $routeParams, User, Player, 
 
 	$scope.$root.$on('user:init', function()
 	{
+		var userId = User.id();
+
 		if ($routeParams.userId) {
-			if (!User.id() || $routeParams.userId !== User.id()) {
+			if (!userId || $routeParams.userId !== userId) {
 				self.isError = true;
 				return;
 			}
@@ -49,8 +51,8 @@ app.controller('PlayerController', function($scope, $routeParams, User, Player, 
 		}
 		Player.init();
 		self.videoSearchBar.init();
-		self.videoSearchList.init();
-		self.videoHistoryList.init();
+		self.videoSearchList.init(userId);
+		self.videoHistoryList.init(userId);
 	});
 
 
