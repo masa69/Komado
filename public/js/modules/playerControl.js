@@ -2,55 +2,56 @@ app.factory('playerControl', function(Player)
 {
 	'use strict';
 
-	var videoId = null;
-	var playing = false;
-	var setting = {};
-	var youtube = {};
+	var self = this;
 
-	var init = function()
-	{
-		this.refreshSetting();
-		this.refreshVideoId();
+	self.data = {
+		videoId : null,
+		playing : false,
+		setting : {},
+		youtube : {},
 	};
 
-	var refreshSetting = function()
+	self.init = function()
 	{
-		this.setting = Player.setting();
+		self.refreshSetting();
+		self.refreshVideoId();
 	};
 
-	var refreshVideoId = function()
+	self.refreshSetting = function()
 	{
-		this.videoId = Player.videoId();
+		self.data.setting = Player.setting();
 	};
 
-	var setPlayingStatus = function(status)
+	self.refreshVideoId = function()
+	{
+		self.data.videoId = Player.videoId();
+	};
+
+	self.setPlayingStatus = function(status)
 	{
 		switch (status) {
 			case 'ready':
 			case 'playing':
-				this.playing = true;
+				self.data.playing = true;
 				break;
 			case 'paused':
 			case 'ended':
-				this.playing = false;
+				self.data.playing = false;
 				break;
 		}
 	};
 
-	var updateSetting = function(key, val)
+	self.updateSetting = function(key, val)
 	{
 		Player.updateSetting(key, val);
 	};
 
 	return {
-		init          : init,
-		videoId       : videoId,
-		playing       : playing,
-		setting       : setting,
-		youtube       : youtube,
-		updateSetting : updateSetting,
-		refreshSetting   : refreshSetting,
-		refreshVideoId   : refreshVideoId,
-		setPlayingStatus : setPlayingStatus,
+		init             : self.init,
+		data             : self.data,
+		updateSetting    : self.updateSetting,
+		refreshSetting   : self.refreshSetting,
+		refreshVideoId   : self.refreshVideoId,
+		setPlayingStatus : self.setPlayingStatus,
 	};
 });

@@ -2,35 +2,36 @@ app.factory('userEntrance', function(User)
 {
 	'use strict';
 
-	var id      = null;
-	var guestId = 'guest';
+	var self = this;
 
-	var validate = {
-		id: /^[a-zA-Z0-9]+$/,
+	self.data = {
+		id       : null,
+		guestId  : 'guest',
+		validate : {
+			id : /^[a-zA-Z0-9]+$/,
+		}
 	};
 
-	var init = function()
+	self.init = function(userId)
 	{
-		var id = User.id();
-		this.id = (id !== guestId) ? id : null;
+		self.data.id = (userId !== self.data.guestId) ? userId : null;
 	};
 
-	var signin = function()
+	self.signin = function()
 	{
-		User.signin(this.id);
+		User.signin(self.data.id);
 	};
 
-	var signinByGuest = function()
+	self.signinByGuest = function()
 	{
-		this.id = guestId;
-		User.signin(guestId);
+		self.data.id = self.data.guestId;
+		self.signin();
 	};
 
 	return {
-		init          : init,
-		id            : id,
-		validate      : validate,
-		signin        : signin,
-		signinByGuest : signinByGuest,
+		init          : self.init,
+		data          : self.data,
+		signin        : self.signin,
+		signinByGuest : self.signinByGuest,
 	};
 });
