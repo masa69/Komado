@@ -5,7 +5,6 @@ app.factory('Player', function($cookies, Api)
 	var self = this;
 
 	self.videoId = null;
-	self.setting = null;
 
 	// https://developers.google.com/youtube/player_parameters?playerVersion=HTML5&hl=ja
 	self.setting = {

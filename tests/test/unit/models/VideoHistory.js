@@ -51,7 +51,7 @@ describe('[Model] VideoHistory', function()
 
 			expect(VideoHistory.lists()).toEqual(null);
 
-			expect(emittedVideoHistoryGetList).not.toEqual(true);
+			expect(emittedVideoHistoryGetList).toEqual(false);
 			expect(emittedVideoHistoryGetListError).toEqual(true);
 		}
 	));
@@ -184,7 +184,7 @@ describe('[Model] VideoHistory', function()
 				}
 			]);
 			expect(emittedVideoHistoryGetList).toEqual(true);
-			expect(emittedVideoHistoryGetListError).not.toEqual(true);
+			expect(emittedVideoHistoryGetListError).toEqual(false);
 		}
 	));
 
@@ -220,7 +220,7 @@ describe('[Model] VideoHistory', function()
 
 			expect(VideoHistory.lists()).toEqual(null);
 
-			expect(emittedVideoHistoryAdd).not.toEqual(true);
+			expect(emittedVideoHistoryAdd).toEqual(false);
 			expect(emittedVideoHistoryAddError).toEqual(true);
 		}
 	));
@@ -272,7 +272,7 @@ describe('[Model] VideoHistory', function()
 			$httpBackend.flush();
 
 			expect(emittedVideoHistoryAdd).toEqual(true);
-			expect(emittedVideoHistoryAddError).not.toEqual(true);
+			expect(emittedVideoHistoryAddError).toEqual(false);
 		}
 	));
 });

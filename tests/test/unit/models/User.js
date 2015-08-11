@@ -108,7 +108,7 @@ describe('[Model] User', function()
 			User.signin(null);
 			expect(User.id()).toEqual(null);
 
-			expect(emittedUserSignin).not.toEqual(true);
+			expect(emittedUserSignin).toEqual(false);
 			expect(emittedUserSigninError).toEqual(true);
 			emittedUserSignin      = false;
 			emittedUserSigninError = false;
@@ -117,7 +117,7 @@ describe('[Model] User', function()
 			User.signin();
 			expect(User.id()).toEqual(null);
 
-			expect(emittedUserSignin).not.toEqual(true);
+			expect(emittedUserSignin).toEqual(false);
 			expect(emittedUserSigninError).toEqual(true);
 			emittedUserSignin      = false;
 			emittedUserSigninError = false;
@@ -126,7 +126,7 @@ describe('[Model] User', function()
 			User.signin('');
 			expect(User.id()).toEqual(null);
 
-			expect(emittedUserSignin).not.toEqual(true);
+			expect(emittedUserSignin).toEqual(false);
 			expect(emittedUserSigninError).toEqual(true);
 		}
 	));
@@ -166,7 +166,7 @@ describe('[Model] User', function()
 			expect(User.id()).toEqual('testUserId');
 
 			expect(emittedUserSignin).toEqual(true);
-			expect(emittedUserSigninError).not.toEqual(true);
+			expect(emittedUserSigninError).toEqual(false);
 		}
 	));
 });

@@ -5,15 +5,12 @@ describe('[Model] Video', function()
 	beforeEach(module('komado'));
 
 	var Video;
-	var $cookies, Api;
 	var $httpBackend, $rootScope;
 
 	beforeEach(inject(
 		function($injector)
 		{
 			Video = $injector.get('Video');
-
-			Api = $injector.get('Api');
 
 			$httpBackend = $injector.get('$httpBackend');
 			$rootScope   = $injector.get('$rootScope');
@@ -139,7 +136,7 @@ describe('[Model] Video', function()
 				}
 			]);
 			expect(emittedVideoFind).toEqual(true);
-			expect(emittedVideoFindError).not.toEqual(true);
+			expect(emittedVideoFindError).toEqual(false);
 		}
 	));
 });
