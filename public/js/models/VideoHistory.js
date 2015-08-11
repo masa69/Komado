@@ -4,7 +4,7 @@ app.factory('VideoHistory', function(Api)
 
 	var self = this;
 
-	self.lists = null;
+	self.lists  = null;
 	self.userId = null;
 
 	self.getList = function()

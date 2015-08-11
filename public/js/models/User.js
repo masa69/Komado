@@ -6,6 +6,10 @@ app.factory('User', function($cookies, Api)
 
 	self.id = null;
 
+	self.validate = {
+		id : /^[a-zA-Z0-9]+$/,
+	};
+
 	self.init = function()
 	{
 		var id = $cookies.get('userId');
@@ -32,10 +36,13 @@ app.factory('User', function($cookies, Api)
 
 	self.isId = function(id)
 	{
-		if (id === null || id === undefined || id === '') {
+		if (id === null || id === undefined) {
 			return false;
 		}
-		return true;
+		if (id.match(self.validate.id)) {
+			return true;
+		}
+		return false;
 	};
 
 	self.setId = function(id)
@@ -55,6 +62,7 @@ app.factory('User', function($cookies, Api)
 		signin: function(id)
 		{
 			self.signin(id);
-		}
+		},
+		validate: self.validate,
 	};
 });

@@ -7,9 +7,7 @@ app.factory('userEntrance', function(User)
 	self.data = {
 		id       : null,
 		guestId  : 'guest',
-		validate : {
-			id : /^[a-zA-Z0-9]+$/,
-		}
+		validate : User.validate,
 	};
 
 	self.init = function(userId)
@@ -25,7 +23,7 @@ app.factory('userEntrance', function(User)
 	self.signinByGuest = function()
 	{
 		self.data.id = self.data.guestId;
-		self.signin();
+		User.signin(self.data.id);
 	};
 
 	return {

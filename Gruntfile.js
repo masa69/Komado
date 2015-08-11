@@ -13,7 +13,7 @@ module.exports = function (grunt) {
 			},
 			grunt:  'Gruntfile.js',
 			source: 'public/js/*/*.js',
-			tests:  'tests/*/*.js'
+			tests:  'tests/test/unit/*/*.js'
 		}
 	});
 	// These plugins provide necessary tasks.
