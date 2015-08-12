@@ -1,10 +1,14 @@
-app.factory('User', function($rootScope, $cookies, Api)
+app.factory('User', function($cookies, Api)
 {
 	'use strict';
 
 	var self = this;
 
 	self.id = null;
+
+	self.validate = {
+		id : /^[a-zA-Z0-9]+$/,
+	};
 
 	self.init = function()
 	{
@@ -35,7 +39,10 @@ app.factory('User', function($rootScope, $cookies, Api)
 		if (id === null || id === undefined) {
 			return false;
 		}
-		return true;
+		if (id.match(self.validate.id)) {
+			return true;
+		}
+		return false;
 	};
 
 	self.setId = function(id)
@@ -55,6 +62,7 @@ app.factory('User', function($rootScope, $cookies, Api)
 		signin: function(id)
 		{
 			self.signin(id);
-		}
+		},
+		validate: self.validate,
 	};
 });

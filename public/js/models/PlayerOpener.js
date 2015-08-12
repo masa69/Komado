@@ -42,6 +42,10 @@ app.factory('PlayerOpener', function($window)
 		close: function()
 		{
 			self.close();
+		},
+		subwin: function()
+		{
+			return self.subwin;
 		}
 	};
 });
