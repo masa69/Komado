@@ -56,6 +56,10 @@ class VideoHistory
 		if !user
 			@@failed.exception('user is required', 404)
 		end
+		if /^[a-zA-Z0-9]+$/ === user
+		else
+			@@failed.exception('user must be a-zA-Z0-9', 404)
+		end
 		if !videoId
 			@@failed.exception('videoId is required', 404)
 		end
