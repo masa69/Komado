@@ -162,13 +162,6 @@ describe('[Model] Player', function()
 
 			var setting = Player.setting();
 
-			var emittedPlayerSetSetting = false;
-
-			$rootScope.$on('player:set:setting', function()
-			{
-				emittedPlayerSetSetting = true;
-			});
-
 			expect(setting.controls).toEqual(0);
 			expect(setting.autoplay).toEqual(1);
 			expect(setting.disablekb).toEqual(1);
@@ -185,8 +178,6 @@ describe('[Model] Player', function()
 
 			Player.updateSetting('loop', false);
 			expect(setting.loop).not.toEqual(false);
-
-			expect(emittedPlayerSetSetting).toEqual(false);
 		}
 	));
 
@@ -197,13 +188,6 @@ describe('[Model] Player', function()
 
 			var setting = Player.setting();
 
-			var emittedPlayerSetSetting = false;
-
-			$rootScope.$on('player:set:setting', function()
-			{
-				emittedPlayerSetSetting = true;
-			});
-
 			expect(setting.controls).toEqual(0);
 			expect(setting.autoplay).toEqual(1);
 			expect(setting.disablekb).toEqual(1);
@@ -212,26 +196,14 @@ describe('[Model] Player', function()
 			Player.updateSetting('controls', 1);
 			expect(setting.controls).toEqual(1);
 
-			expect(emittedPlayerSetSetting).toEqual(true);
-			emittedPlayerSetSetting = false;
-
 			Player.updateSetting('autoplay', 0);
 			expect(setting.autoplay).toEqual(0);
 
-			expect(emittedPlayerSetSetting).toEqual(true);
-			emittedPlayerSetSetting = false;
-
-			Player.updateSetting('disablekb', 1);
-			expect(setting.disablekb).toEqual(1);
-
-			expect(emittedPlayerSetSetting).toEqual(true);
-			emittedPlayerSetSetting = false;
+			Player.updateSetting('disablekb', 0);
+			expect(setting.disablekb).toEqual(0);
 
 			Player.updateSetting('loop', 0);
 			expect(setting.loop).toEqual(0);
-
-			expect(emittedPlayerSetSetting).toEqual(true);
-			emittedPlayerSetSetting = false;
 		}
 	));
 });

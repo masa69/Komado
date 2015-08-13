@@ -457,12 +457,13 @@ i.fa.right {
   .player-control .switch {
     display: inline-block;
     vertical-align: middle; }
-    .player-control .switch a {
+    .player-control .switch div {
       background: #222;
       color: #fff;
       display: block;
-      padding: 5px 7px; }
-      .player-control .switch a:hover {
+      padding: 5px 7px;
+      cursor: pointer; }
+      .player-control .switch div:hover {
         background: #353535; }
   .player-control .fa {
     padding: 0; }

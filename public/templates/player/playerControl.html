@@ -3,12 +3,12 @@
 </div>
 <div class="player-control text-center">
 	<div class="switch loop">
-		<a ng-if="self.data.setting.loop == 1" href="" ng-click="self.updateSetting('loop', 0)"><i class="fa fa-repeat"></i>on</a>
-		<a ng-if="self.data.setting.loop == 0" href="" ng-click="self.updateSetting('loop', 1)"><i class="fa fa-repeat"></i>off</a>
+		<div ng-if="self.data.setting.loop == 1" ng-click="self.updateSetting('loop', 0)"><i class="fa fa-repeat"></i>on</div>
+		<div ng-if="self.data.setting.loop == 0" ng-click="self.updateSetting('loop', 1)"><i class="fa fa-repeat"></i>off</div>
 	</div>
 	<hr>
 	<div class="switch playing">
-		<a ng-if="!self.data.playing" href="" ng-click="self.data.youtube.playVideo()"><i class="fa fa-play"></i></a>
-		<a ng-if="self.data.playing" href="" ng-click="self.data.youtube.pauseVideo()"><i class="fa fa-pause"></i></a>
+		<div ng-if="!self.data.playing" ng-click="self.data.youtube.playVideo()"><i class="fa fa-play"></i></div>
+		<div ng-if="self.data.playing" ng-click="self.data.youtube.pauseVideo()"><i class="fa fa-pause"></i></div>
 	</div>
 </div>
