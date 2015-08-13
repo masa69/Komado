@@ -62,11 +62,6 @@ app.controller('PlayerController', function($scope, $routeParams, User, Player, 
 		self.playerControl.init();
 	});
 
-	$scope.$root.$on('player:set:setting', function()
-	{
-		self.playerControl.refreshSetting();
-	});
-
 	$scope.$root.$on('player:set:videoid', function()
 	{
 		self.playerControl.refreshVideoId();

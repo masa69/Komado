@@ -48,7 +48,6 @@ app.factory('Player', function($cookies, Api)
 		if (self.setting[key] === 0 || self.setting[key] === 1) {
 			if (val === 0 || val === 1) {
 				self.setting[key] = val;
-				Api.emit('player:set:setting');
 			}
 		}
 	};

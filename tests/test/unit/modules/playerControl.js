@@ -29,6 +29,8 @@ describe('[Module] playerControl', function()
 	it('init(), i dont have videoId', inject(
 		function()
 		{
+			$cookies.remove('videoId');
+
 			expect(playerControl.data.videoId).toEqual(null);
 			expect(playerControl.data.setting).toEqual({});
 
