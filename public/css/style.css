@@ -343,6 +343,7 @@ a, button {
     padding: 9px 8px 0 0; }
 
 .main {
+  padding-bottom: 20px;
   margin: 0 auto; }
 
 .main.page-index,
