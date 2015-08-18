@@ -50,7 +50,8 @@ app.controller('UserController', function(
 				return;
 			}
 			if ($routeParams.userId !== userId) {
-				$window.location.href = '/' + userId;
+				// $window.location.href = '/' + userId;
+				User.signin($routeParams.userId);
 				return;
 			}
 		}
@@ -61,6 +62,11 @@ app.controller('UserController', function(
 		self.videoHistoryList.init(userId);
 	});
 
+
+	$scope.$root.$on('user:signin', function()
+	{
+		self.init();
+	});
 
 
 	$scope.$root.$on('video:find', function()

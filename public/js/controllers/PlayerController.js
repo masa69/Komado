@@ -43,7 +43,8 @@ app.controller('PlayerController', function($scope, $routeParams, User, Player, 
 
 		if ($routeParams.userId) {
 			if (!userId || $routeParams.userId !== userId) {
-				self.isError = true;
+				// self.isError = true;
+				User.signin($routeParams.userId);
 				return;
 			}
 		} else {
@@ -53,6 +54,11 @@ app.controller('PlayerController', function($scope, $routeParams, User, Player, 
 		self.videoSearchBar.init();
 		self.videoSearchList.init(userId);
 		self.videoHistoryList.init(userId);
+	});
+
+	$scope.$root.$on('user:signin', function()
+	{
+		self.init();
 	});
 
 
