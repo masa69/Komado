@@ -50,7 +50,6 @@ app.controller('UserController', function(
 				return;
 			}
 			if ($routeParams.userId !== userId) {
-				// $window.location.href = '/' + userId;
 				User.signin($routeParams.userId);
 				return;
 			}
@@ -66,6 +65,12 @@ app.controller('UserController', function(
 	$scope.$root.$on('user:signin', function()
 	{
 		self.init();
+	});
+
+	$scope.$root.$on('user:signin:error', function()
+	{
+		// console.log('signin error');
+		$window.location.href = '/';
 	});
 
 
