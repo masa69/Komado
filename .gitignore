@@ -1,5 +1,5 @@
 .bundle
-.sass-cache
+bower_components
 Gemfile.lock
 vendor
 config.ru
@@ -9,5 +9,4 @@ tmp/*/*
 node_modules
 sass/.sass-cache
 sass/Font-Awesome
-public/js/bower_components/*
 !.gitkeep

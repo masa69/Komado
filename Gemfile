@@ -12,10 +12,6 @@ gem 'sinatra-contrib'
 gem 'dalli'
 
 # css
-gem 'font-awesome-sass'
-gem 'sass'
-gem 'bourbon'
-gem 'neat'
 gem 'bitters'
 
 # YouTubeAPI
