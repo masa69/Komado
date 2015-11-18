@@ -25,3 +25,7 @@ gem 'trollop'
 # MongoDB
 gem 'mongo'
 gem 'bson_ext'
+
+
+# unicorn
+gem 'unicorn'

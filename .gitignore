@@ -4,6 +4,8 @@ Gemfile.lock
 vendor
 config.ru
 log/*
+tmp/unicorn.sock
+tmp/*/*
 node_modules
 sass/.sass-cache
 sass/Font-Awesome

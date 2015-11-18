@@ -1,6 +1,7 @@
 require './app'
 
 configure do
+	# enable :reloader
 	# enable :logging
 	# file = File.new("#{settings.root}/log/#{settings.environment}.log", 'a+')
 	# file.sync = true
