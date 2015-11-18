@@ -1,7 +1,11 @@
 @charset "UTF-8";
 
-@import "bourbon/bourbon";
-@import "neat/neat";
+@import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
+@import "../bower_components/neat/app/assets/stylesheets/neat";
+
 @import "base/base";
+
+@import "../bower_components/neat-simple-grid/neat-simple-grid-setting";
+@import "../bower_components/neat-simple-grid/neat-simple-grid";
 
 @import "libs/all";
